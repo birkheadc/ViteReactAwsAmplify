@@ -8,6 +8,7 @@ const enTranslations: ITranslations = {
           home: "home",
           about: "about",
           contact: "contact",
+          books: "books",
         },
         SessionLinks: {
           login: "login",

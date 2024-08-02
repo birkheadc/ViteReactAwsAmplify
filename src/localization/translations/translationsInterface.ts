@@ -8,6 +8,7 @@ export default interface ITranslations {
           home: string;
           about: string;
           contact: string;
+          books: string;
         };
         SessionLinks: {
           login: string;
