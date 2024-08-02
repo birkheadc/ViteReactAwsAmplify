@@ -1,0 +1,14 @@
+@tailwind base;
+@layer base {
+  html {
+    font-size: 18px;
+  }
+  * {
+    transition: border-color 300ms, color 300ms, background-color 300ms;
+  }
+  *:focus {
+    outline: none
+  } 
+}
+@tailwind components;
+@tailwind utilities;
