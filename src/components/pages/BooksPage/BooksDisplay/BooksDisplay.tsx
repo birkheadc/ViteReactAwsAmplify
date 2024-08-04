@@ -1,10 +1,15 @@
+import api from "@/api";
 import { Book } from "@/types/book/book";
+import { useQuery } from "@tanstack/react-query";
 
-type BooksDisplayProps = {
-  books: Book[];
-};
+type BooksDisplayProps = {};
 
-function BooksDisplay({ books }: BooksDisplayProps): JSX.Element | null {
+function BooksDisplay(): JSX.Element | null {
+  const query = useQuery<Book[]>({
+    queryKey: ["books"],
+    queryFn: api.books.fetchAll,
+  });
+
   return (
     <div>
       <span>BooksDisplay</span>
