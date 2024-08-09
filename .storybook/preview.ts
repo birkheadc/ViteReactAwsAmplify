@@ -10,6 +10,7 @@ import withI18next from "./withI18next";
 import { CUSTOM_VIEWPORTS } from "./customViewports";
 
 import "../src/styles/main.css";
+import withQueryProvider from "./withQueryProvider";
 
 const preview: Preview = {
   parameters: {
@@ -34,6 +35,7 @@ const preview: Preview = {
   decorators: [
     withI18next,
     withRouter,
+    withQueryProvider,
     withThemeByClassName<ReactRenderer>({
       themes: {
         light: "light",

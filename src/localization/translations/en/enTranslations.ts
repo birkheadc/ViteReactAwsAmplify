@@ -18,6 +18,15 @@ const enTranslations: ITranslations = {
         rightPanelTitle: "profile",
       },
     },
+    pages: {
+      BooksPage: {
+        BooksDisplay: {
+          title: "title",
+          author: "author",
+          pages: "pages",
+        },
+      },
+    },
   },
 };
 

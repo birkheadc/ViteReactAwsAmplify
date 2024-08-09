@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useLocation } from "react-router-dom";
 import ThemeSwitch from "@/components/common/ThemeSwitch/ThemeSwitch";
-import useKeyedTranslation from "@/hooks/useKeyedTranslation/useKeyedTranslation";
+import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
 import CoreLinks from "@/components/nav/PrimaryNav/CoreLinks/CoreLinks";
 import NavPanel from "@/components/nav/PrimaryNav/NavPanel/NavPanel";
 import SessionLinks from "@/components/nav/PrimaryNav/SessionLinks/SessionLinks";

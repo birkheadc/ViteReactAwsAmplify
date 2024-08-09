@@ -1,5 +1,5 @@
-import { fetchAll } from "@/api/books/fetchAll/fetchAll";
+import getPage from "@/api/books/getPage/getPage";
 
 export default {
-  fetchAll,
+  getPage,
 };

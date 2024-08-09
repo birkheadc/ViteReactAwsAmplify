@@ -1,5 +1,5 @@
 import { Switch } from "@/components/ui/switch";
-import useTheme from "@/hooks/useTheme/useTheme";
+import { useTheme } from "@/hooks/useTheme/useTheme";
 import { MoonIcon, SunIcon } from "lucide-react";
 
 function ThemeSwitch(): JSX.Element | null {

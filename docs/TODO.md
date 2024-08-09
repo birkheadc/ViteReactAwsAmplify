@@ -1,3 +1,3 @@
 # TODO
 
-- Create a BooksDisplay component that shows all books from backend
+- Fix style of PaginatedControls. Keep page number center?

@@ -1,8 +1,17 @@
-function BookTableRow(): JSX.Element | null {
+import { TableRow, TableCell } from "@/components/ui/table";
+import { Book } from "@/types/book/book";
+
+type BookTableRowProps = {
+  book: Book;
+};
+
+function BookTableRow({ book }: BookTableRowProps): JSX.Element | null {
   return (
-    <div>
-      <span>BookTableRow</span>
-    </div>
+    <TableRow>
+      <TableCell>{book.title}</TableCell>
+      <TableCell>{book.author}</TableCell>
+      <TableCell>{book.pages}</TableCell>
+    </TableRow>
   );
 }
 

@@ -16,5 +16,14 @@ export default interface ITranslations {
         };
       };
     };
+    pages: {
+      BooksPage: {
+        BooksDisplay: {
+          title: string;
+          author: string;
+          pages: string;
+        };
+      };
+    };
   };
 }
