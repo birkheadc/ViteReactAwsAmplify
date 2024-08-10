@@ -1,4 +1,3 @@
-import api from "@/api";
 import PaginatedControls from "@/components/common/PaginatedControls/PaginatedControls";
 import BookTableRow from "@/components/pages/BooksPage/BooksDisplay/BookTableRow/BookTableRow";
 import {
@@ -11,13 +10,18 @@ import {
 import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
 import { usePaginatedQuery } from "@/hooks/usePaginatedQuery/usePaginatedQuery";
 import { Book } from "@/types/book/book";
+import { Paginated } from "@/types/paginated/paginated";
 
-function BooksDisplay(): JSX.Element | null {
+type BooksDisplayProps = {
+  queryFn: (paginationToken?: string) => Promise<Paginated<Book>>;
+};
+
+function BooksDisplay({ queryFn }: BooksDisplayProps): JSX.Element | null {
   const { t } = useKeyedTranslation("components.pages.BooksPage.BooksDisplay");
 
   const { data, controls } = usePaginatedQuery<Book>({
     queryKey: "books",
-    queryFn: api.books.getPage,
+    queryFn,
   });
 
   return (
