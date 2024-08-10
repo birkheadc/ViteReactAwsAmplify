@@ -2,6 +2,12 @@
 @layer base {
   html {
     font-size: 18px;
+    background-color: theme(colors.neutral.200);
+    color: theme(colors.neutral.900);
+  }
+  html.dark {
+    background-color: theme(colors.neutral.900);
+    color: theme(colors.neutral.200);
   }
   * {
     transition: border-color 300ms, color 300ms, background-color 300ms;
