@@ -2,21 +2,13 @@ import { Meta, StoryObj } from "@storybook/react";
 import BooksDisplay from "./BooksDisplay";
 import { Paginated } from "@/types/paginated/paginated";
 import { Book } from "@/types/book/book";
-
-const meta: Meta<typeof BooksDisplay> = {
-  title: "Components/Pages/BooksPage/BooksDisplay",
-  component: BooksDisplay,
-};
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
+import { fn } from "@storybook/test";
 
 const queryFnMock = async (
   paginationToken?: string,
 ): Promise<Paginated<Book>> => {
   await new Promise((res) => {
-    setTimeout(res, 2000);
+    setTimeout(res, 1000);
   });
 
   const startIndex = parseInt(paginationToken ?? "0");
@@ -38,6 +30,18 @@ const queryFnMock = async (
     paginationToken: (startIndex + 10).toString(),
   };
 };
+
+const meta: Meta<typeof BooksDisplay> = {
+  title: "Components/Pages/BooksPage/BooksDisplay",
+  component: BooksDisplay,
+  args: {
+    queryFn: fn().mockImplementation(queryFnMock),
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
 
 export const LargeScreen: Story = {
   args: {
