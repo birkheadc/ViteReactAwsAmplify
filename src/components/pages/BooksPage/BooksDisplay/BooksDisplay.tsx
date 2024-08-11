@@ -24,7 +24,7 @@ function BooksDisplay(): JSX.Element | null {
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <Table>
         <TableHeader>
           <TableRow>
