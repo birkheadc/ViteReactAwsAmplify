@@ -7,21 +7,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ApiProviderContext } from "@/contexts/ApiContext/ApiContext";
 import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
 import { usePaginatedQuery } from "@/hooks/usePaginatedQuery/usePaginatedQuery";
 import { Book } from "@/types/book/book";
-import { Paginated } from "@/types/paginated/paginated";
+import React from "react";
 
-type BooksDisplayProps = {
-  queryFn: (paginationToken?: string) => Promise<Paginated<Book>>;
-};
-
-function BooksDisplay({ queryFn }: BooksDisplayProps): JSX.Element | null {
+function BooksDisplay(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.pages.BooksPage.BooksDisplay");
+
+  const { api } = React.useContext(ApiProviderContext);
 
   const { data, controls } = usePaginatedQuery<Book>({
     queryKey: "books",
-    queryFn,
+    queryFn: api.books.getPage,
   });
 
   return (
