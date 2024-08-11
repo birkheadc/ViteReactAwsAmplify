@@ -28,10 +28,6 @@ export function usePaginatedQuery<T>({
 }: PaginatedQueryParams<T>): PaginatedQueryReturn<T> {
   const [paginationTokens, setPaginationTokens] = React.useState<string[]>([]);
 
-  React.useEffect(() => {
-    console.log(paginationTokens);
-  }, [paginationTokens]);
-
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
   const { data, isError, isFetching, isFetched, isLoading } = useQuery<
