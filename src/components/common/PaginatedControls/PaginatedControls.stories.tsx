@@ -19,6 +19,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+export const SmallScreen: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: "mobileVertical",
+    },
+  },
+};
+
 export const ShowCurrentPage: Story = {
   args: {
     currentPage: 99,
