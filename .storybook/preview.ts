@@ -11,6 +11,8 @@ import { CUSTOM_VIEWPORTS } from "./customViewports";
 
 import "../src/styles/main.css";
 import withQueryProvider from "./withQueryProvider";
+import withApiProvider from "./withApiProvider";
+import mockApi from "./mockApi";
 
 const preview: Preview = {
   parameters: {
@@ -33,6 +35,7 @@ const preview: Preview = {
     },
   },
   decorators: [
+    withApiProvider(mockApi),
     withI18next,
     withRouter,
     withQueryProvider,
