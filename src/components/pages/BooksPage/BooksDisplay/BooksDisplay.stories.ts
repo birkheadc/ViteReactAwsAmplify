@@ -43,16 +43,9 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const LargeScreen: Story = {
-  args: {
-    queryFn: queryFnMock,
-  },
-};
+export const LargeScreen: Story = {};
 
 export const SmallScreen: Story = {
-  args: {
-    queryFn: queryFnMock,
-  },
   parameters: {
     viewport: {
       defaultViewport: "mobileVertical",
