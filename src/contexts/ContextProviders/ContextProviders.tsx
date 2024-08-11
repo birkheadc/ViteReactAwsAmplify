@@ -1,3 +1,5 @@
+import api from "@/api";
+import { ApiProvider } from "@/contexts/ApiContext/ApiContext";
 import { ThemeProvider } from "@/contexts/ThemeContext/ThemeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -11,8 +13,10 @@ export function ContextProviders({
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>{children}</ThemeProvider>
-    </QueryClientProvider>
+    <ApiProvider api={api}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </QueryClientProvider>
+    </ApiProvider>
   );
 }
