@@ -1,5 +1,8 @@
 import books from "@/api/books";
+import { Api } from "@/types/api/api";
 
-export default {
+const api: Api = {
   books,
 };
+
+export default api;
