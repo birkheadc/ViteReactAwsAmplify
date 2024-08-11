@@ -1,5 +1,7 @@
+import NoMoreData from "@/components/common/NoMoreData/NoMoreData";
 import PaginatedControls from "@/components/common/PaginatedControls/PaginatedControls";
 import BookTableRow from "@/components/pages/BooksPage/BooksDisplay/BookTableRow/BookTableRow";
+import TableRowSkeleton from "@/components/skeletons/TableRowSkeleton/TableRowSkeleton";
 import {
   Table,
   TableBody,
@@ -18,7 +20,7 @@ function BooksDisplay(): JSX.Element | null {
 
   const { api } = React.useContext(ApiProviderContext);
 
-  const { data, controls } = usePaginatedQuery<Book>({
+  const { data, isFetched, controls } = usePaginatedQuery<Book>({
     queryKey: "books",
     queryFn: api.books.getPage,
   });
@@ -34,14 +36,19 @@ function BooksDisplay(): JSX.Element | null {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((book) => (
-            <BookTableRow key={book.id} book={book} />
-          ))}
+          {isFetched
+            ? data.map((book) => <BookTableRow key={book.id} book={book} />)
+            : Array.from({ length: PAGE_LENGTH }).map((_, i) => (
+                <TableRowSkeleton numCells={3} key={i} />
+              ))}
         </TableBody>
       </Table>
+      <NoMoreData data={data} isFetched={isFetched} pageLength={PAGE_LENGTH} />
       <PaginatedControls {...controls} />
     </div>
   );
 }
+
+const PAGE_LENGTH = 10;
 
 export default BooksDisplay;

@@ -27,6 +27,11 @@ const enTranslations: ITranslations = {
         },
       },
     },
+    common: {
+      NoMoreData: {
+        noMoreData: "nothing more to load",
+      },
+    },
   },
 };
 

@@ -1,5 +1,9 @@
 import SecondaryButton from "@/components/common/SecondaryButton/SecondaryButton";
-import { ArrowLeft, ArrowLeftToLine, ArrowRight } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ArrowLeftToLineIcon,
+  ArrowRightIcon,
+} from "lucide-react";
 
 export type PaginatedControlsProps = {
   currentPage: number;
@@ -19,31 +23,34 @@ function PaginatedControls({
   canGoToNext,
 }: PaginatedControlsProps): JSX.Element | null {
   return (
-    <div className="flex flex-row items-center justify-between gap-20 m-auto w-fit">
-      <div className="flex flex-row justify-between w-40 gap-4">
+    <div className="grid max-w-full grid-cols-3 m-auto w-fit">
+      <div className="flex flex-row justify-between gap-4">
         <SecondaryButton
+          className="flex-grow"
           aria-label="go to first page"
           disabled={!canGoToPrev}
           onClick={goToFirstPage}
         >
-          <ArrowLeftToLine />
+          <ArrowLeftToLineIcon />
         </SecondaryButton>
         <SecondaryButton
+          className="flex-grow"
           aria-label="go to previous page"
           disabled={!canGoToPrev}
           onClick={goToPrevPage}
         >
-          <ArrowLeft />
+          <ArrowLeftIcon />
         </SecondaryButton>
       </div>
-      <span>{currentPage}</span>
-      <div className="w-40">
+      <div className="flex items-center justify-center">{currentPage}</div>
+      <div className="flex flex-row">
         <SecondaryButton
+          className="flex-grow"
           aria-label="go to next page"
           disabled={!canGoToNext}
           onClick={goToNextPage}
         >
-          <ArrowRight />
+          <ArrowRightIcon />
         </SecondaryButton>
       </div>
     </div>

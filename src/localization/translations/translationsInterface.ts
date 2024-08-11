@@ -25,5 +25,10 @@ export default interface ITranslations {
         };
       };
     };
+    common: {
+      NoMoreData: {
+        noMoreData: string;
+      };
+    };
   };
 }
