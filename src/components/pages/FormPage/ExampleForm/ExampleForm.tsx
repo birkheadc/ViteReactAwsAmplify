@@ -13,34 +13,34 @@ import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKe
 import { Input } from "../../../ui/input";
 import SubmitButton from "../../../form/SubmitButton/SubmitButton";
 
-const TestFormSchema = z.object({
+const ExampleFormSchema = z.object({
   displayName: z.string().min(4).max(16),
   password: z.string().min(8).max(32),
   secretCode: z.string().min(4).max(16),
 });
 
-type TestFormSchema = z.infer<typeof TestFormSchema>;
+type ExampleFormSchema = z.infer<typeof ExampleFormSchema>;
 
 // Default values must be populated since inputs are controlled
-const TestFormDefaultValues: TestFormSchema = {
+const ExampleFormDefaultValues: ExampleFormSchema = {
   displayName: "",
   password: "",
   secretCode: "'",
 };
 
-const TestFormPlaceholders: Partial<TestFormSchema> = {
+const ExampleFormPlaceholders: Partial<ExampleFormSchema> = {
   displayName: "old",
 };
 
-function TestForm(): JSX.Element | null {
-  const { t } = useKeyedTranslation("components.pages.FormPage.TestForm");
+function ExampleForm(): JSX.Element | null {
+  const { t } = useKeyedTranslation("components.pages.FormPage.ExampleForm");
 
-  const form = useForm<TestFormSchema>({
-    resolver: zodResolver(TestFormSchema),
-    defaultValues: TestFormDefaultValues,
+  const form = useForm<ExampleFormSchema>({
+    resolver: zodResolver(ExampleFormSchema),
+    defaultValues: ExampleFormDefaultValues,
   });
 
-  const onSubmit = (values: TestFormSchema) => {
+  const onSubmit = (values: ExampleFormSchema) => {
     console.log(`Submit this:`, values);
   };
 
@@ -55,7 +55,7 @@ function TestForm(): JSX.Element | null {
               <FormLabel>{t("displayName.label")}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder={TestFormPlaceholders.displayName}
+                  placeholder={ExampleFormPlaceholders.displayName}
                   {...field}
                 />
               </FormControl>
@@ -69,4 +69,4 @@ function TestForm(): JSX.Element | null {
   );
 }
 
-export default TestForm;
+export default ExampleForm;

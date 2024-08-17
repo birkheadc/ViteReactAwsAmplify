@@ -31,7 +31,7 @@ export default interface ITranslations {
         };
       };
       FormPage: {
-        TestForm: {
+        ExampleForm: {
           displayName: {
             label: string;
             description: string;

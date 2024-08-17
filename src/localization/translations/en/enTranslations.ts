@@ -28,7 +28,7 @@ const enTranslations: ITranslations = {
         },
       },
       FormPage: {
-        TestForm: {
+        ExampleForm: {
           displayName: {
             label: "display name",
             description: "the name other users will recognize you by",
