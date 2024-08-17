@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { AccessToken } from "@/types/accessToken/accessToken";
+import { AccessToken } from "./types/accessToken/accessToken";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

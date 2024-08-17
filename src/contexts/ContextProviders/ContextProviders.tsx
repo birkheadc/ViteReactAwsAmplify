@@ -1,7 +1,7 @@
-import api from "@/api";
-import { ApiProvider } from "@/contexts/ApiContext/ApiContext";
-import { ThemeProvider } from "@/contexts/ThemeContext/ThemeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import api from "../../api";
+import { ApiProvider } from "../ApiContext/ApiContext";
+import { ThemeProvider } from "../ThemeContext/ThemeContext";
 
 type ContextProvidersProps = {
   children?: React.ReactNode;

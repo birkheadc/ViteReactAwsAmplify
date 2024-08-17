@@ -1,9 +1,9 @@
-import SecondaryButton from "@/components/common/SecondaryButton/SecondaryButton";
 import {
   ArrowLeftIcon,
   ArrowLeftToLineIcon,
   ArrowRightIcon,
 } from "lucide-react";
+import SecondaryButton from "../SecondaryButton/SecondaryButton";
 
 export type PaginatedControlsProps = {
   currentPage: number;

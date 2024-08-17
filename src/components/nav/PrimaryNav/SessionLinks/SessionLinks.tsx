@@ -1,6 +1,6 @@
-import PrimaryNavLink from "@/components/nav/PrimaryNav/PrimaryNavLink/PrimaryNavLink";
-import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
 import { CircleUserIcon, LogInIcon } from "lucide-react";
+import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import PrimaryNavLink from "../PrimaryNavLink/PrimaryNavLink";
 
 function SessionLinks(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.nav.PrimaryNav.SessionLinks");

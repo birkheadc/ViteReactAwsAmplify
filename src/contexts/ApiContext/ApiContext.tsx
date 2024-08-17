@@ -1,6 +1,6 @@
-import api from "@/api";
-import { Api } from "@/types/api/api";
 import React from "react";
+import { Api } from "../../types/api/api";
+import api from "../../api";
 
 type ApiProviderProps = {
   children: React.ReactNode;

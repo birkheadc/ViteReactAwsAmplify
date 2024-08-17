@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import BooksDisplay from "./BooksDisplay";
-import { Paginated } from "@/types/paginated/paginated";
-import { Book } from "@/types/book/book";
 import { fn } from "@storybook/test";
+import { Book } from "../../../../types/book/book";
+import { Paginated } from "../../../../types/paginated/paginated";
 
 const queryFnMock = async (
   paginationToken?: string,

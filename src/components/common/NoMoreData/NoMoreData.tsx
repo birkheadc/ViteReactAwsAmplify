@@ -1,5 +1,5 @@
-import DialogueBox from "@/components/common/DialogueBox/DialogueBox";
-import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
+import { useKeyedTranslation } from "../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import DialogueBox from "../DialogueBox/DialogueBox";
 
 type NoMoreDataProps = {
   data: unknown[];

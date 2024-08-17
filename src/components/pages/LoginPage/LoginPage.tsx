@@ -1,5 +1,5 @@
-import { ApiProviderContext } from "@/contexts/ApiContext/ApiContext";
 import React from "react";
+import { ApiProviderContext } from "../../../contexts/ApiContext/ApiContext";
 
 function LoginPage(): JSX.Element | null {
   const { api } = React.useContext(ApiProviderContext);

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
 import React from "react";
+import { cn } from "../../../utils";
+import { Button } from "../../ui/button";
 
 type KeyboardActiveButtonProps =
   React.ButtonHTMLAttributes<HTMLButtonElement> & {

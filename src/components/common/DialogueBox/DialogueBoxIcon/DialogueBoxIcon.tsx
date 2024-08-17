@@ -1,5 +1,5 @@
-import { MessageType } from "@/types/messageType/messageType";
 import { InfoIcon, TriangleAlertIcon } from "lucide-react";
+import { MessageType } from "../../../../types/messageType/messageType";
 
 type DialogueBoxIconProps = {
   type: MessageType;

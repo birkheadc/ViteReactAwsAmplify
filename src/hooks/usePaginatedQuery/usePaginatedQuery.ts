@@ -1,6 +1,6 @@
-import { Paginated } from "@/types/paginated/paginated";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import React from "react";
+import { Paginated } from "../../types/paginated/paginated";
 
 export type PaginatedQueryParams<T> = {
   queryKey: string;

@@ -1,4 +1,4 @@
-import BooksDisplay from "@/components/pages/BooksPage/BooksDisplay/BooksDisplay";
+import BooksDisplay from "./BooksDisplay/BooksDisplay";
 
 function BooksPage(): JSX.Element | null {
   return (

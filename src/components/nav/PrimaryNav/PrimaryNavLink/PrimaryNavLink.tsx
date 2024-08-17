@@ -1,6 +1,6 @@
-import { cn } from "@/utils";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { cn } from "../../../../utils";
 
 type PrimaryNavLinkProps = {
   to: string;

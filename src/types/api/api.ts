@@ -1,6 +1,6 @@
-import { AccessToken } from "@/types/accessToken/accessToken";
-import { Book } from "@/types/book/book";
-import { Paginated } from "@/types/paginated/paginated";
+import { AccessToken } from "../accessToken/accessToken";
+import { Book } from "../book/book";
+import { Paginated } from "../paginated/paginated";
 
 export type Api = {
   books: {

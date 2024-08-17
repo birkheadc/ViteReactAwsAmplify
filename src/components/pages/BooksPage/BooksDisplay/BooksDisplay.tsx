@@ -1,19 +1,19 @@
-import NoMoreData from "@/components/common/NoMoreData/NoMoreData";
-import PaginatedControls from "@/components/common/PaginatedControls/PaginatedControls";
-import BookTableRow from "@/components/pages/BooksPage/BooksDisplay/BookTableRow/BookTableRow";
-import TableRowSkeleton from "@/components/skeletons/TableRowSkeleton/TableRowSkeleton";
+import React from "react";
+import { ApiProviderContext } from "../../../../contexts/ApiContext/ApiContext";
+import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import { usePaginatedQuery } from "../../../../hooks/usePaginatedQuery/usePaginatedQuery";
+import NoMoreData from "../../../common/NoMoreData/NoMoreData";
+import PaginatedControls from "../../../common/PaginatedControls/PaginatedControls";
+import TableRowSkeleton from "../../../skeletons/TableRowSkeleton/TableRowSkeleton";
 import {
-  Table,
-  TableBody,
-  TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { ApiProviderContext } from "@/contexts/ApiContext/ApiContext";
-import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
-import { usePaginatedQuery } from "@/hooks/usePaginatedQuery/usePaginatedQuery";
-import { Book } from "@/types/book/book";
-import React from "react";
+  TableHead,
+  TableBody,
+  Table,
+} from "../../../ui/table";
+import BookTableRow from "./BookTableRow/BookTableRow";
+import { Book } from "../../../../types/book/book";
 
 function BooksDisplay(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.pages.BooksPage.BooksDisplay");

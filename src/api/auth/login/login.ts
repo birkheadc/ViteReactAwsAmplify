@@ -1,5 +1,5 @@
-import { AccessToken } from "@/types/accessToken/accessToken";
-import { extractAccessToken } from "@/utils";
+import { AccessToken } from "../../../types/accessToken/accessToken";
+import { extractAccessToken } from "../../../utils";
 
 const login = async (
   emailAddress: string,

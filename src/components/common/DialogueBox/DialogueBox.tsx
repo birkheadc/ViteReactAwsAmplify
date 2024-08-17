@@ -1,5 +1,5 @@
-import DialogueBoxIcon from "@/components/common/DialogueBox/DialogueBoxIcon/DialogueBoxIcon";
-import { MessageType } from "@/types/messageType/messageType";
+import { MessageType } from "../../../types/messageType/messageType";
+import DialogueBoxIcon from "./DialogueBoxIcon/DialogueBoxIcon";
 
 type DialogueBoxProps = {
   type: MessageType;

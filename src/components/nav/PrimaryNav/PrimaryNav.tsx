@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import { useLocation } from "react-router-dom";
-import ThemeSwitch from "@/components/common/ThemeSwitch/ThemeSwitch";
-import { useKeyedTranslation } from "@/hooks/useKeyedTranslation/useKeyedTranslation";
-import CoreLinks from "@/components/nav/PrimaryNav/CoreLinks/CoreLinks";
-import NavPanel from "@/components/nav/PrimaryNav/NavPanel/NavPanel";
-import SessionLinks from "@/components/nav/PrimaryNav/SessionLinks/SessionLinks";
+import { useKeyedTranslation } from "../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import ThemeSwitch from "../../common/ThemeSwitch/ThemeSwitch";
+import CoreLinks from "./CoreLinks/CoreLinks";
+import NavPanel from "./NavPanel/NavPanel";
+import SessionLinks from "./SessionLinks/SessionLinks";
 
 function PrimaryNav(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.nav.PrimaryNav");

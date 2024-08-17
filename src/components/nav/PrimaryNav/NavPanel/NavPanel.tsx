@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import FocusTrap from "focus-trap-react";
-import { cn } from "@/utils";
+import { cn } from "../../../../utils";
 
 type NavPanelProps = {
   children?: React.ReactNode;

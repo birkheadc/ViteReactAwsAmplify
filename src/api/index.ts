@@ -1,6 +1,6 @@
-import books from "@/api/books";
-import auth from "@/api/auth";
-import { Api } from "@/types/api/api";
+import { Api } from "../types/api/api";
+import auth from "./auth";
+import books from "./books";
 
 const api: Api = {
   books,

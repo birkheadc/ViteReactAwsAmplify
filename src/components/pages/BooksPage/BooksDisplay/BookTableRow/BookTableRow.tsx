@@ -1,5 +1,5 @@
-import { TableRow, TableCell } from "@/components/ui/table";
-import { Book } from "@/types/book/book";
+import { Book } from "../../../../../types/book/book";
+import { TableRow, TableCell } from "../../../../ui/table";
 
 type BookTableRowProps = {
   book: Book;

@@ -1,4 +1,4 @@
-import getPage from "@/api/books/getPage/getPage";
+import getPage from "./getPage/getPage";
 
 export default {
   getPage,

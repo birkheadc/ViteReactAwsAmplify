@@ -1,5 +1,5 @@
-import KeyboardActiveButton from "@/components/common/KeyboardActiveButton/KeyboardActiveButton";
 import React from "react";
+import KeyboardActiveButton from "../KeyboardActiveButton/KeyboardActiveButton";
 
 type SecondaryButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
