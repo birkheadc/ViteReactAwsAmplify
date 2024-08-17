@@ -1,14 +1,14 @@
-import { AuthToken } from "../../../../src/types/authToken/authToken";
+import { AccessToken } from "../../../../src/types/accessToken/accessToken";
 
 const login = async (
   emailAddress: string,
   password: string,
-): Promise<AuthToken> => {
+): Promise<AccessToken> => {
   await new Promise((res) => {
     setTimeout(res, 1000);
   });
 
-  return "authtoken";
+  return "accesstoken";
 };
 
 export default login;
