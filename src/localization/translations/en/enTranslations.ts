@@ -33,6 +33,20 @@ const enTranslations: ITranslations = {
             label: "display name",
             description: "the name other users will recognize you by",
           },
+          password: {
+            label: "password",
+            description: "keep it secret, keep it safe",
+          },
+          secretCode: {
+            label: "secret code",
+            description:
+              "the server will tell you what to put here after you submit once",
+          },
+          passwordConfirm: {
+            label: "confirm password",
+            description:
+              "this has to perfectly match the previous password field",
+          },
         },
       },
     },

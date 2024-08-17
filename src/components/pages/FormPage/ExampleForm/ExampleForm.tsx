@@ -12,12 +12,24 @@ import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKe
 import { Input } from "../../../ui/input";
 import SubmitButton from "../../../form/SubmitButton/SubmitButton";
 import StandardForm from "../../../form/StandardForm/StandardForm";
+import FormFieldError from "../../../form/FormFieldError/FormFieldError";
 
-const ExampleFormSchema = z.object({
-  displayName: z.string().min(4).max(16),
-  password: z.string().min(8).max(32),
-  secretCode: z.string().min(4).max(16),
-});
+const ExampleFormSchema = z
+  .object({
+    displayName: z.string().min(4).max(16),
+    password: z.string().min(8).max(32),
+    passwordConfirm: z.string().min(8).max(32),
+    secretCode: z.string().min(4).max(16),
+  })
+  .superRefine(({ password, passwordConfirm }, ctx) => {
+    if (password !== passwordConfirm) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Password does not match",
+        path: ["passwordConfirm"],
+      });
+    }
+  });
 
 type ExampleFormSchema = z.infer<typeof ExampleFormSchema>;
 
@@ -25,6 +37,7 @@ type ExampleFormSchema = z.infer<typeof ExampleFormSchema>;
 const ExampleFormDefaultValues: ExampleFormSchema = {
   displayName: "",
   password: "",
+  passwordConfirm: "",
   secretCode: "'",
 };
 
@@ -59,6 +72,58 @@ function ExampleForm(): JSX.Element | null {
               />
             </FormControl>
             <FormDescription>{t("displayName.description")}</FormDescription>
+            <FormFieldError error={form.formState.errors.displayName} />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="password"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{t("password.label")}</FormLabel>
+            <FormControl>
+              <Input
+                placeholder={ExampleFormPlaceholders.password}
+                {...field}
+              />
+            </FormControl>
+            <FormDescription>{t("password.description")}</FormDescription>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="passwordConfirm"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{t("passwordConfirm.label")}</FormLabel>
+            <FormControl>
+              <Input
+                placeholder={ExampleFormPlaceholders.passwordConfirm}
+                {...field}
+              />
+            </FormControl>
+            <FormDescription>
+              {t("passwordConfirm.description")}
+            </FormDescription>
+            <FormFieldError error={form.formState.errors.passwordConfirm} />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="secretCode"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{t("secretCode.label")}</FormLabel>
+            <FormControl>
+              <Input
+                placeholder={ExampleFormPlaceholders.secretCode}
+                {...field}
+              />
+            </FormControl>
+            <FormDescription>{t("secretCode.description")}</FormDescription>
           </FormItem>
         )}
       />

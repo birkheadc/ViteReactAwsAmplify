@@ -4,6 +4,8 @@
 - Create a more dynamic method of mocking api for storybook
 - Wrap ApiContext in a useApi hook like useTheme
 - Create a framework for forms, then create register and login forms
+  - Can probably combine a lot of the form elements into one custom element that includes them all...
+  - Need to incorporate i18n into zod errors, looks like that can be done with FieldError.type as the key
   - Create a TestForm that utilizes many/all features of the framework and explains them
     - Client Side validation
       - Have some fields that are validated client side and can't be submitted unless correct

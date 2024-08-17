@@ -36,6 +36,18 @@ export default interface ITranslations {
             label: string;
             description: string;
           };
+          password: {
+            label: string;
+            description: string;
+          };
+          passwordConfirm: {
+            label: string;
+            description: string;
+          };
+          secretCode: {
+            label: string;
+            description: string;
+          };
         };
       };
     };
