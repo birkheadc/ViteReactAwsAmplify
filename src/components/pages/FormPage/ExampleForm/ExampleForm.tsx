@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
-  Form,
   FormControl,
   FormDescription,
   FormField,
@@ -12,6 +11,7 @@ import {
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import { Input } from "../../../ui/input";
 import SubmitButton from "../../../form/SubmitButton/SubmitButton";
+import StandardForm from "../../../form/StandardForm/StandardForm";
 
 const ExampleFormSchema = z.object({
   displayName: z.string().min(4).max(16),
@@ -45,27 +45,25 @@ function ExampleForm(): JSX.Element | null {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="displayName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("displayName.label")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={ExampleFormPlaceholders.displayName}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>{t("displayName.description")}</FormDescription>
-            </FormItem>
-          )}
-        />
-        <SubmitButton onClick={form.handleSubmit(onSubmit)} />
-      </form>
-    </Form>
+    <StandardForm form={form} onSubmit={onSubmit}>
+      <FormField
+        control={form.control}
+        name="displayName"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>{t("displayName.label")}</FormLabel>
+            <FormControl>
+              <Input
+                placeholder={ExampleFormPlaceholders.displayName}
+                {...field}
+              />
+            </FormControl>
+            <FormDescription>{t("displayName.description")}</FormDescription>
+          </FormItem>
+        )}
+      />
+      <SubmitButton onClick={form.handleSubmit(onSubmit)} />
+    </StandardForm>
   );
 }
 
