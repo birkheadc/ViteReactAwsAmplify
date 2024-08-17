@@ -9,6 +9,7 @@ const enTranslations: ITranslations = {
           about: "about",
           contact: "contact",
           books: "books",
+          form: "form",
         },
         SessionLinks: {
           login: "login",
@@ -26,10 +27,23 @@ const enTranslations: ITranslations = {
           pages: "pages",
         },
       },
+      FormPage: {
+        TestForm: {
+          displayName: {
+            label: "display name",
+            description: "the name other users will recognize you by",
+          },
+        },
+      },
     },
     common: {
       NoMoreData: {
         noMoreData: "nothing more to load",
+      },
+    },
+    form: {
+      SubmitButton: {
+        submit: "submit",
       },
     },
   },

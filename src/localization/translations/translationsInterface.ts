@@ -1,5 +1,10 @@
 export default interface ITranslations {
   components: {
+    form: {
+      SubmitButton: {
+        submit: string;
+      };
+    };
     nav: {
       PrimaryNav: {
         leftPanelTitle: string;
@@ -9,6 +14,7 @@ export default interface ITranslations {
           about: string;
           contact: string;
           books: string;
+          form: string;
         };
         SessionLinks: {
           login: string;
@@ -22,6 +28,14 @@ export default interface ITranslations {
           title: string;
           author: string;
           pages: string;
+        };
+      };
+      FormPage: {
+        TestForm: {
+          displayName: {
+            label: string;
+            description: string;
+          };
         };
       };
     };
