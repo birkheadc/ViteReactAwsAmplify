@@ -1,5 +1,3 @@
-import React from "react";
-import { ApiProviderContext } from "../../../../contexts/ApiContext/ApiContext";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import { usePaginatedQuery } from "../../../../hooks/usePaginatedQuery/usePaginatedQuery";
 import NoMoreData from "../../../common/NoMoreData/NoMoreData";
@@ -14,11 +12,12 @@ import {
 } from "../../../ui/table";
 import BookTableRow from "./BookTableRow/BookTableRow";
 import { Book } from "../../../../types/book/book";
+import { useApi } from "../../../../hooks/useApi/useApi";
 
 function BooksDisplay(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.pages.BooksPage.BooksDisplay");
 
-  const { api } = React.useContext(ApiProviderContext);
+  const { api } = useApi();
 
   const { data, isFetched, controls } = usePaginatedQuery<Book>({
     queryKey: "books",

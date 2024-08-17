@@ -8,18 +8,18 @@ type ThemeProviderProps = {
   storageKey?: string;
 };
 
-type ThemeProviderState = {
+type ThemeContextState = {
   theme: Theme;
   setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
+const initialState: ThemeContextState = {
   theme: "system",
   setTheme: () => null,
 };
 
-export const ThemeProviderContext =
-  React.createContext<ThemeProviderState>(initialState);
+export const ThemeContext =
+  React.createContext<ThemeContextState>(initialState);
 
 export function ThemeProvider({
   children,
@@ -58,8 +58,8 @@ export function ThemeProvider({
   };
 
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
+    <ThemeContext.Provider {...props} value={value}>
       {children}
-    </ThemeProviderContext.Provider>
+    </ThemeContext.Provider>
   );
 }

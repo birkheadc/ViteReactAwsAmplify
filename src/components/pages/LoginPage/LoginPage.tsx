@@ -1,8 +1,7 @@
-import React from "react";
-import { ApiProviderContext } from "../../../contexts/ApiContext/ApiContext";
+import { useApi } from "../../../hooks/useApi/useApi";
 
 function LoginPage(): JSX.Element | null {
-  const { api } = React.useContext(ApiProviderContext);
+  const { api } = useApi();
 
   const testLogin = async () => {
     const accessToken = await api.auth.login(

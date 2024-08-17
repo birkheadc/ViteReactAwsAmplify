@@ -1,8 +1,7 @@
-import React from "react";
-import { ApiProviderContext } from "../../../contexts/ApiContext/ApiContext";
+import { useApi } from "../../../hooks/useApi/useApi";
 
 function RegisterPage(): JSX.Element | null {
-  const { api } = React.useContext(ApiProviderContext);
+  const { api } = useApi();
 
   const testRegister = async () => {
     await api.auth.register("birkheadc@gmail.com", "Password1!");

@@ -7,21 +7,16 @@ type ApiProviderProps = {
   api: Api;
 };
 
-type ApiProviderState = {
+type ApiContextState = {
   api: Api;
 };
 
-const initialState: ApiProviderState = {
+const initialState: ApiContextState = {
   api: api,
 };
 
-export const ApiProviderContext =
-  React.createContext<ApiProviderState>(initialState);
+export const ApiContext = React.createContext<ApiContextState>(initialState);
 
 export function ApiProvider({ children, api }: ApiProviderProps) {
-  return (
-    <ApiProviderContext.Provider value={{ api }}>
-      {children}
-    </ApiProviderContext.Provider>
-  );
+  return <ApiContext.Provider value={{ api }}>{children}</ApiContext.Provider>;
 }
