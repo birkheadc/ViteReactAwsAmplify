@@ -1,4 +1,4 @@
-import { AuthToken } from "@/types/authToken/authToken";
+import { AccessToken } from "@/types/accessToken/accessToken";
 import { Book } from "@/types/book/book";
 import { Paginated } from "@/types/paginated/paginated";
 
@@ -8,6 +8,6 @@ export type Api = {
   };
   auth: {
     register: (emailAddress: string, password: string) => Promise<void>;
-    login: (emailAddress: string, password: string) => Promise<AuthToken>;
+    login: (emailAddress: string, password: string) => Promise<AccessToken>;
   };
 };
