@@ -1,4 +1,10 @@
-import { AtSignIcon, BookAIcon, BookIcon, HomeIcon } from "lucide-react";
+import {
+  AtSignIcon,
+  BookAIcon,
+  BookIcon,
+  FileTextIcon,
+  HomeIcon,
+} from "lucide-react";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import PrimaryNavLink from "../PrimaryNavLink/PrimaryNavLink";
 
@@ -22,6 +28,10 @@ function CoreLinks(): JSX.Element | null {
       <PrimaryNavLink to={"/books"}>
         <BookIcon size={"1rem"} />
         {t("books")}
+      </PrimaryNavLink>
+      <PrimaryNavLink to={"/form"}>
+        <FileTextIcon size={"1rem"} />
+        {t("form")}
       </PrimaryNavLink>
     </>
   );
