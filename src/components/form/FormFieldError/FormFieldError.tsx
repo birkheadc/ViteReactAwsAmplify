@@ -11,7 +11,9 @@ function FormFieldError({ error }: FormFieldErrorProps): JSX.Element | null {
 
   return (
     <div>
-      <span className="text-secondary-500">{error.message}</span>
+      <span className="text-sm text-error-500 dark:text-error-300">
+        {error.message}
+      </span>
     </div>
   );
 }
