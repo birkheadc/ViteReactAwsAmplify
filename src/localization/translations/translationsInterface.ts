@@ -15,6 +15,7 @@ export default interface ITranslations {
           contact: string;
           books: string;
           form: string;
+          toast: string;
         };
         SessionLinks: {
           login: string;
@@ -23,6 +24,32 @@ export default interface ITranslations {
       };
     };
     pages: {
+      ToastPage: {
+        ToastTestButtons: {
+          message: string;
+          explanation: string;
+          info: {
+            message: string;
+            button: string;
+          };
+          success: {
+            message: string;
+            button: string;
+          };
+          warning: {
+            message: string;
+            button: string;
+          };
+          error: {
+            message: string;
+            button: string;
+          };
+          default: {
+            message: string;
+            button: string;
+          };
+        };
+      };
       BooksPage: {
         BooksDisplay: {
           title: string;

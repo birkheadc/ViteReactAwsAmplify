@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import "./localization/i18n";
 import "./styles/main.css";
 
+import "react-toastify/dist/ReactToastify.css";
+
 import App from "./app/App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

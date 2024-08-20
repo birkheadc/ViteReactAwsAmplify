@@ -10,6 +10,7 @@ const enTranslations: ITranslations = {
           contact: "contact",
           books: "books",
           form: "form",
+          toast: "toast",
         },
         SessionLinks: {
           login: "login",
@@ -47,6 +48,34 @@ const enTranslations: ITranslations = {
             description:
               "this has to perfectly match the previous password field",
           },
+        },
+      },
+      ToastPage: {
+        ToastTestButtons: {
+          message:
+            "Press the buttons below to try out what various toasts look like.",
+          info: {
+            message: "Here is some information in an `Info` toast!",
+            button: "info",
+          },
+          success: {
+            message: "Congratulations! Your `Success` toast has arrived!",
+            button: "success",
+          },
+          warning: {
+            message: "Watch out! `Warning` toast coming through!",
+            button: "warning",
+          },
+          error: {
+            message: "Oh no! This is what an `Error` toast looks like!",
+            button: "error",
+          },
+          default: {
+            message: "This is the `Default` type of toast.",
+            button: "default",
+          },
+          explanation:
+            "Notice that the toast refreshes if you press it before the previous one disappears, rather than a new one stacking up. This is because the buttons use a custom `useRefreshToast` hook, where any toast that shares an ID with a currently visible toast will replace it.The next group of buttons don't use this system, so try them as well!",
         },
       },
     },

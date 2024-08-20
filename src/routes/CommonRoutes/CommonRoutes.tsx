@@ -6,6 +6,7 @@ import HomePage from "../../components/pages/HomePage/HomePage";
 import LoginPage from "../../components/pages/LoginPage/LoginPage";
 import RegisterPage from "../../components/pages/RegisterPage/RegisterPage";
 import FormPage from "../../components/pages/FormPage/FormPage";
+import ToastPage from "../../components/pages/ToastPage/ToastPage";
 
 const CommonRoutes = (
   <>
@@ -16,6 +17,7 @@ const CommonRoutes = (
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/books" element={<BooksPage />} />
     <Route path="/form" element={<FormPage />} />
+    <Route path="/toast" element={<ToastPage />} />
   </>
 );
 

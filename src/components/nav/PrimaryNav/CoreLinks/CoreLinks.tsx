@@ -4,6 +4,7 @@ import {
   BookIcon,
   FileTextIcon,
   HomeIcon,
+  MessageSquareTextIcon,
 } from "lucide-react";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import PrimaryNavLink from "../PrimaryNavLink/PrimaryNavLink";
@@ -32,6 +33,10 @@ function CoreLinks(): JSX.Element | null {
       <PrimaryNavLink to={"/form"}>
         <FileTextIcon size={"1rem"} />
         {t("form")}
+      </PrimaryNavLink>
+      <PrimaryNavLink to={"/toast"}>
+        <MessageSquareTextIcon size={"1rem"} />
+        {t("toast")}
       </PrimaryNavLink>
     </>
   );
