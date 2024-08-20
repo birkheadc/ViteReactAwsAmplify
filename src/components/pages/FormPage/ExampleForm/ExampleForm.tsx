@@ -13,6 +13,7 @@ import { Input } from "../../../ui/input";
 import SubmitButton from "../../../form/SubmitButton/SubmitButton";
 import StandardForm from "../../../form/StandardForm/StandardForm";
 import FormFieldError from "../../../form/FormFieldError/FormFieldError";
+import FormGroup from "../../../form/FormGroup/FormGroup";
 
 const ExampleFormSchema = z
   .object({
@@ -38,7 +39,7 @@ const ExampleFormDefaultValues: ExampleFormSchema = {
   displayName: "",
   password: "",
   passwordConfirm: "",
-  secretCode: "'",
+  secretCode: "",
 };
 
 const ExampleFormPlaceholders: Partial<ExampleFormSchema> = {
@@ -59,75 +60,82 @@ function ExampleForm(): JSX.Element | null {
 
   return (
     <StandardForm form={form} onSubmit={onSubmit}>
-      <FormField
-        control={form.control}
-        name="displayName"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{t("displayName.label")}</FormLabel>
-            <FormControl>
-              <Input
-                placeholder={ExampleFormPlaceholders.displayName}
-                {...field}
-              />
-            </FormControl>
-            <FormDescription>{t("displayName.description")}</FormDescription>
-            <FormFieldError error={form.formState.errors.displayName} />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="password"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{t("password.label")}</FormLabel>
-            <FormControl>
-              <Input
-                placeholder={ExampleFormPlaceholders.password}
-                {...field}
-              />
-            </FormControl>
-            <FormDescription>{t("password.description")}</FormDescription>
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="passwordConfirm"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{t("passwordConfirm.label")}</FormLabel>
-            <FormControl>
-              <Input
-                placeholder={ExampleFormPlaceholders.passwordConfirm}
-                {...field}
-              />
-            </FormControl>
-            <FormDescription>
-              {t("passwordConfirm.description")}
-            </FormDescription>
-            <FormFieldError error={form.formState.errors.passwordConfirm} />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="secretCode"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>{t("secretCode.label")}</FormLabel>
-            <FormControl>
-              <Input
-                placeholder={ExampleFormPlaceholders.secretCode}
-                {...field}
-              />
-            </FormControl>
-            <FormDescription>{t("secretCode.description")}</FormDescription>
-          </FormItem>
-        )}
-      />
-      <SubmitButton onClick={form.handleSubmit(onSubmit)} />
+      <FormGroup>
+        <FormField
+          control={form.control}
+          name="displayName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("displayName.label")}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={ExampleFormPlaceholders.displayName}
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>{t("displayName.description")}</FormDescription>
+              <FormFieldError error={form.formState.errors.displayName} />
+            </FormItem>
+          )}
+        />
+      </FormGroup>
+      <FormGroup>
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("password.label")}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={ExampleFormPlaceholders.password}
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>{t("password.description")}</FormDescription>
+              <FormFieldError error={form.formState.errors.password} />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("passwordConfirm.label")}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={ExampleFormPlaceholders.passwordConfirm}
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                {t("passwordConfirm.description")}
+              </FormDescription>
+              <FormFieldError error={form.formState.errors.passwordConfirm} />
+            </FormItem>
+          )}
+        />
+      </FormGroup>
+      <FormGroup>
+        <FormField
+          control={form.control}
+          name="secretCode"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("secretCode.label")}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={ExampleFormPlaceholders.secretCode}
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>{t("secretCode.description")}</FormDescription>
+              <FormFieldError error={form.formState.errors.secretCode} />
+            </FormItem>
+          )}
+        />
+      </FormGroup>
     </StandardForm>
   );
 }
