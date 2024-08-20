@@ -1,6 +1,7 @@
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../ui/form";
 import { ZodSchema, z } from "zod";
+import SubmitButton from "../SubmitButton/SubmitButton";
 
 type StandardFormProps<TSchema extends ZodSchema> = {
   form: UseFormReturn<z.infer<TSchema>>;
@@ -15,7 +16,15 @@ function StandardForm<TSchema extends ZodSchema>({
 }: StandardFormProps<TSchema>): JSX.Element | null {
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>{children}</form>
+      <form
+        className="flex flex-col gap-4 m-auto w-fit"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        {children}
+        <div className="flex justify-center w-full">
+          <SubmitButton />
+        </div>
+      </form>
     </Form>
   );
 }
