@@ -31,7 +31,6 @@
   - Has a `login` method that takes in a login code, retrieves an access token and refresh token from Cognito, requests user info from the backend with that access token, and stores that refresh token.
   - Provides access to the currently logged in User's info.
 
-- Get the backend correctly validating the jwt
+- Update npm packages
 
-- Books table is on top of nav
-  - Also doesn't seem to think there is a pagination token, but still works?
+- There is some weirdness going on in development when going back to pages already loaded in booksdisplay

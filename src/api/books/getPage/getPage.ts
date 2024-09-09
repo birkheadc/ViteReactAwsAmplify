@@ -11,8 +11,6 @@ const getPage = async (paginationToken?: string): Promise<Paginated<Book>> => {
     builder: async (json) => Paginated.fromJson(json, Book.fromJson),
   });
 
-  console.log({ result });
-
   return result;
 };
 

@@ -13,7 +13,6 @@ export const cn = (...inputs: ClassValue[]) => {
 };
 
 const extractAccessToken = (data: unknown): AccessToken | null => {
-  console.log({ data });
   if (data == null) return null;
   if (typeof data !== "object") return null;
   if (!("AuthenticationResult" in data)) return null;
