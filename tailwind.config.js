@@ -45,6 +45,7 @@ export default {
         700: "#735c45",
         800: "#382e22",
         900: "#261f17",
+        950: "#1c170e",
       },
       success: {
         50: "#f3f8ed",
@@ -123,6 +124,8 @@ export default {
       addVariant("hocus", ["&:hover", "&:focus"]);
       addVariant("hocus-within", ["&:hover", "&:focus-within"]);
       addVariant("ff", ":-moz-any(&)");
+      addVariant("not-last-child", "&>*:not(:last-child)");
+      addVariant("not-first-child", "&>*:not(:first-child)");
     }),
     animatecss,
   ],

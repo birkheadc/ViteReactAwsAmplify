@@ -17,9 +17,9 @@ import { useApi } from "../../../../hooks/useApi/useApi";
 function BooksDisplay(): JSX.Element | null {
   const { t } = useKeyedTranslation("components.pages.BooksPage.BooksDisplay");
 
-  const { api } = useApi();
+  const api = useApi();
 
-  const { data, isFetched, controls } = usePaginatedQuery<Book>({
+  const { data, isFetched, controls, isMore } = usePaginatedQuery<Book>({
     queryKey: "books",
     queryFn: api.books.getPage,
   });
@@ -37,17 +37,17 @@ function BooksDisplay(): JSX.Element | null {
         <TableBody>
           {isFetched
             ? data.map((book) => <BookTableRow key={book.id} book={book} />)
-            : Array.from({ length: PAGE_LENGTH }).map((_, i) => (
+            : Array.from({ length: NUM_SKELETON_ROWS }).map((_, i) => (
                 <TableRowSkeleton numCells={3} key={i} />
               ))}
         </TableBody>
       </Table>
-      <NoMoreData data={data} isFetched={isFetched} pageLength={PAGE_LENGTH} />
+      <NoMoreData isMore={isMore} isFetched={isFetched} />
       <PaginatedControls {...controls} />
     </div>
   );
 }
 
-const PAGE_LENGTH = 10;
+const NUM_SKELETON_ROWS = 10;
 
 export default BooksDisplay;

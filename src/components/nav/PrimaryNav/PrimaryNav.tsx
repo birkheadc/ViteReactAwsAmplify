@@ -36,7 +36,7 @@ function PrimaryNav(): JSX.Element | null {
   };
 
   return (
-    <nav className="sticky top-0 w-full h-nav bg-neutral-700 dark:bg-neutral-900">
+    <nav className="sticky top-0 w-full h-nav bg-neutral-700 dark:bg-neutral-950">
       <div className="sticky flex flex-row items-center justify-between h-full max-w-6xl px-4 m-auto">
         <NavPanel
           side="left"

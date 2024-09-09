@@ -2,20 +2,17 @@ import { useKeyedTranslation } from "../../../hooks/useKeyedTranslation/useKeyed
 import DialogueBox from "../DialogueBox/DialogueBox";
 
 type NoMoreDataProps = {
-  data: unknown[];
-  pageLength: number;
+  isMore: boolean;
   isFetched: boolean;
 };
 
 function NoMoreData({
-  data,
-  pageLength,
   isFetched,
+  isMore,
 }: NoMoreDataProps): JSX.Element | null {
   const { t } = useKeyedTranslation("components.common.NoMoreData");
 
-  if (!isFetched) return <></>;
-  if (data.length === pageLength) return <></>;
+  if (!isFetched || isMore) return <></>;
 
   return <DialogueBox type="alert" message={t("noMoreData")} />;
 }

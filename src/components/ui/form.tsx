@@ -80,10 +80,7 @@ const FormItem = React.forwardRef<
     <FormItemContext.Provider value={{ id }}>
       <div
         ref={ref}
-        className={cn(
-          "space-y-2 w-[min(16rem,100%)] flex-grow max-w-fit",
-          className
-        )}
+        className={cn("flex flex-col gap-2", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -100,7 +97,11 @@ const FormLabel = React.forwardRef<
   return (
     <Label
       ref={ref}
-      className={cn(error && "text-error-500 dark:text-error-300", className)}
+      className={cn(
+        "text-lg text-neutral-700 dark:text-neutral-300",
+        error && "text-error-500 dark:text-error-300",
+        className
+      )}
       htmlFor={formItemId}
       {...props}
     />
@@ -131,7 +132,7 @@ const FormControl = React.forwardRef<
 });
 FormControl.displayName = "FormControl";
 
-const FormDescription = React.forwardRef<
+const FormItemDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => {
@@ -142,14 +143,14 @@ const FormDescription = React.forwardRef<
       ref={ref}
       id={formDescriptionId}
       className={cn(
-        "text-sm text-neutral-500 dark:text-neutral-400",
+        "text-sm md:max-w-lg text-neutral-500 dark:text-neutral-400",
         className
       )}
       {...props}
     />
   );
 });
-FormDescription.displayName = "FormDescription";
+FormItemDescription.displayName = "FormItemDescription";
 
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
@@ -183,7 +184,7 @@ export {
   FormItem,
   FormLabel,
   FormControl,
-  FormDescription,
+  FormItemDescription,
   FormMessage,
   FormField,
 };

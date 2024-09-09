@@ -1,17 +1,17 @@
 import { useApi } from "../../../hooks/useApi/useApi";
+import RegisterForm from "./RegisterForm/RegisterForm";
+import { RegisterFormSchema } from "./RegisterForm/RegisterForm.schema";
 
 function RegisterPage(): JSX.Element | null {
-  const { api } = useApi();
+  const api = useApi();
 
-  const testRegister = async () => {
-    await api.auth.register("birkheadc@gmail.com", "Password1!");
+  const handleSubmit = async (data: RegisterFormSchema) => {
+    await api.auth.register(data);
   };
 
   return (
     <div>
-      <h1>Register Page</h1>
-      <p>Welcome to the Register Page</p>
-      <button onClick={testRegister}>Test Register</button>
+      <RegisterForm submitFn={handleSubmit} />
     </div>
   );
 }

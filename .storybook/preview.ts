@@ -12,7 +12,9 @@ import { CUSTOM_VIEWPORTS } from "./customViewports";
 import "../src/styles/main.css";
 import withQueryProvider from "./withQueryProvider";
 import withApiProvider from "./withApiProvider";
+import withToast from "./withToast";
 import mockApi from "./mockApi";
+import { ThemeProvider } from "../src/contexts/ThemeContext/ThemeContext";
 
 const preview: Preview = {
   parameters: {
@@ -46,6 +48,7 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
+    withToast,
   ],
 };
 

@@ -1,80 +1,45 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "../../../ui/form";
+import { FormField } from "../../../ui/form";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import { Input } from "../../../ui/input";
 import StandardForm from "../../../form/StandardForm/StandardForm";
-import FormFieldError from "../../../form/FormFieldError/FormFieldError";
 import FormGroup from "../../../form/FormGroup/FormGroup";
-
-const ExampleFormSchema = z
-  .object({
-    displayName: z.string().min(4).max(16),
-    password: z.string().min(8).max(32),
-    passwordConfirm: z.string().min(8).max(32),
-    secretCode: z.string().min(4).max(16),
-  })
-  .superRefine(({ password, passwordConfirm }, ctx) => {
-    if (password !== passwordConfirm) {
-      ctx.addIssue({
-        code: "custom",
-        message: "Password does not match",
-        path: ["passwordConfirm"],
-      });
-    }
-  });
-
-type ExampleFormSchema = z.infer<typeof ExampleFormSchema>;
-
-// Default values must be populated since inputs are controlled
-const ExampleFormDefaultValues: ExampleFormSchema = {
-  displayName: "",
-  password: "",
-  passwordConfirm: "",
-  secretCode: "",
-};
-
-const ExampleFormPlaceholders: Partial<ExampleFormSchema> = {
-  displayName: "old",
-};
+import FormItemFormatted from "../../../form/FormItemFormatted/FormItemFormatted";
+import { useStandardForm } from "../../../../hooks/useStandardForm/useStandardForm";
+import { schema, placeholders, defaultValues } from "./ExampleForm.schema";
+import { useApi } from "../../../../hooks/useApi/useApi";
 
 function ExampleForm(): JSX.Element | null {
+  const api = useApi();
+
   const { t } = useKeyedTranslation("components.pages.FormPage.ExampleForm");
 
-  const form = useForm<ExampleFormSchema>({
-    resolver: zodResolver(ExampleFormSchema),
-    defaultValues: ExampleFormDefaultValues,
+  const { form, mutation, toast } = useStandardForm({
+    title: "example-form",
+    schema: schema,
+    defaultValues,
+    submitFn: api.example.submit,
   });
 
-  const onSubmit = (values: ExampleFormSchema) => {
-    console.log(`Submit this:`, values);
-  };
-
   return (
-    <StandardForm form={form} onSubmit={onSubmit}>
+    <StandardForm
+      title={t("title")}
+      description={t("description")}
+      form={form}
+      toast={toast}
+      mutation={mutation}
+    >
       <FormGroup>
         <FormField
           control={form.control}
           name="displayName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("displayName.label")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={ExampleFormPlaceholders.displayName}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>{t("displayName.description")}</FormDescription>
-              <FormFieldError error={form.formState.errors.displayName} />
-            </FormItem>
+            <FormItemFormatted
+              label={t("displayName.label")}
+              description={t("displayName.description")}
+              error={form.formState.errors.displayName}
+            >
+              <Input placeholder={placeholders.displayName} {...field} />
+            </FormItemFormatted>
           )}
         />
       </FormGroup>
@@ -83,36 +48,36 @@ function ExampleForm(): JSX.Element | null {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("password.label")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={ExampleFormPlaceholders.password}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>{t("password.description")}</FormDescription>
-              <FormFieldError error={form.formState.errors.password} />
-            </FormItem>
+            <FormItemFormatted
+              label={t("password.label")}
+              description={t("password.description")}
+              error={form.formState.errors.password}
+            >
+              <Input
+                autoComplete="new-password"
+                type="password"
+                placeholder={placeholders.password}
+                {...field}
+              />
+            </FormItemFormatted>
           )}
         />
         <FormField
           control={form.control}
           name="passwordConfirm"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("passwordConfirm.label")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={ExampleFormPlaceholders.passwordConfirm}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                {t("passwordConfirm.description")}
-              </FormDescription>
-              <FormFieldError error={form.formState.errors.passwordConfirm} />
-            </FormItem>
+            <FormItemFormatted
+              label={t("passwordConfirm.label")}
+              description={t("passwordConfirm.description")}
+              error={form.formState.errors.passwordConfirm}
+            >
+              <Input
+                autoComplete="new-password"
+                type="password"
+                placeholder={placeholders.passwordConfirm}
+                {...field}
+              />
+            </FormItemFormatted>
           )}
         />
       </FormGroup>
@@ -121,17 +86,13 @@ function ExampleForm(): JSX.Element | null {
           control={form.control}
           name="secretCode"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("secretCode.label")}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={ExampleFormPlaceholders.secretCode}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>{t("secretCode.description")}</FormDescription>
-              <FormFieldError error={form.formState.errors.secretCode} />
-            </FormItem>
+            <FormItemFormatted
+              label={t("secretCode.label")}
+              description={t("secretCode.description")}
+              error={form.formState.errors.secretCode}
+            >
+              <Input placeholder={placeholders.secretCode} {...field} />
+            </FormItemFormatted>
           )}
         />
       </FormGroup>

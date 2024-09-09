@@ -1,5 +1,8 @@
+import { BooksApi } from "../../types/api/api";
 import getPage from "./getPage/getPage";
 
-export default {
+const books: BooksApi = {
   getPage,
 };
+
+export default books;

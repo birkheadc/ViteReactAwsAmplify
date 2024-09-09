@@ -1,5 +1,5 @@
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
-import useRefreshToast from "../../../../hooks/useRefreshToast/useRefreshToast";
+import { useRefreshToast } from "../../../../hooks/useRefreshToast/useRefreshToast";
 import SecondaryButton from "../../../common/SecondaryButton/SecondaryButton";
 
 function ToastTestButtons(): JSX.Element | null {

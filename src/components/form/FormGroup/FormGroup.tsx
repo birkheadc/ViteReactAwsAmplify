@@ -4,7 +4,7 @@ type FormGroupProps = {
 
 function FormGroup({ children }: FormGroupProps): JSX.Element | null {
   return (
-    <div className="flex flex-row flex-wrap gap-4 p-4 rounded-lg bg-neutral-200/50 dark:bg-neutral-800/50">
+    <div className="flex flex-col p-4 rounded-lg bg-neutral-200/50 dark:bg-neutral-800/50 not-last-child:border-b-4 not-last-child:border-neutral-50 not-last-child:pb-4 not-first-child:pt-4 dark:not-last-child:border-neutral-900">
       {children}
     </div>
   );

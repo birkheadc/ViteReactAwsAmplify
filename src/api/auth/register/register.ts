@@ -1,11 +1,14 @@
-const register = async (
-  emailAddress: string,
-  password: string,
-): Promise<void> => {
-  // const url = "https://aspnetcoreserverless-development.auth.ap-southeast-2.amazoncognito.com";
-  const url = "https://cognito-idp.ap-southeast-2.amazonaws.com";
+import { RegisterFormSchema } from "../../../components/pages/RegisterPage/RegisterForm/RegisterForm.schema";
+import config from "../../../config";
+import { ApiError } from "../../../types/apiResult/apiError";
+
+const register = async ({
+  emailAddress,
+  password,
+}: RegisterFormSchema): Promise<void> => {
+  const url = config.cognito.URL;
   const body = JSON.stringify({
-    ClientId: "5ns45evk0628220vuvr4ahmaer",
+    ClientId: config.cognito.CLIENT_ID,
     Password: password,
     UserAttributes: [
       {
@@ -24,12 +27,12 @@ const register = async (
     body,
     headers,
   };
-  console.log("Process request", url, request);
+
   const response = await fetch(url, request);
 
-  console.log(response);
-  const data = await response.json();
-  console.log(data);
+  if (response.status !== 200) {
+    throw ApiError.REGISTRATION_FAILED;
+  }
 };
 
 export default register;

@@ -1,20 +1,35 @@
-import { useApi } from "../../../hooks/useApi/useApi";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSession } from "../../../hooks/useSession/useSession";
+import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import { ApiError } from "../../../types/apiResult/apiError";
 
 function LoginPage(): JSX.Element | null {
-  const { api } = useApi();
+  const session = useSession();
+  const [params] = useSearchParams();
+  const nav = useNavigate();
 
-  const testLogin = async () => {
-    const accessToken = await api.auth.login(
-      "birkheadc@gmail.com",
-      "Password1!"
-    );
-    console.log(`Bearer ${accessToken}`);
-  };
+  const { mutate, isPending, error } = useMutation<void, ApiError, string>({
+    mutationFn: session.login,
+    onSuccess: () => nav("/weeee"),
+  });
+
+  React.useEffect(() => {
+    (async function loginOrRedirect() {
+      const code = params.get("code");
+      if (code == null) {
+        return;
+      }
+      mutate(code);
+    })();
+  }, [params, session, mutate]);
+
   return (
     <div>
-      <h1>Login Page</h1>
-      <p>Welcome to the Login Page</p>
-      <button onClick={testLogin}>Test Login</button>
+      {isPending && <span>Logging...</span>}
+      {error && (
+        <span>TODO: Say why login failed and have a link to try again.</span>
+      )}
     </div>
   );
 }

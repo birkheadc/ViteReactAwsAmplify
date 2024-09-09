@@ -1,8 +1,32 @@
 export default interface ITranslations {
   components: {
     form: {
+      errorCode: {
+        loginFailed: string;
+        registrationFailed: string;
+      };
+      status: {
+        "400": string;
+      };
+      validationErrors: {
+        min: string;
+        max: string;
+        passwordMatch: string;
+        unexpected: string;
+        equal: string;
+        notEqual: string;
+        required: string;
+        email: string;
+        needsUppercase: string;
+        needsLowercase: string;
+        needsNumber: string;
+        needsSymbol: string;
+      };
       SubmitButton: {
         submit: string;
+      };
+      StandardForm: {
+        invalid: string;
       };
     };
     nav: {
@@ -18,8 +42,14 @@ export default interface ITranslations {
           toast: string;
         };
         SessionLinks: {
-          login: string;
-          register: string;
+          LoggedInLinks: {
+            logout: string;
+            profile: string;
+          };
+          LoggedOutLinks: {
+            login: string;
+            register: string;
+          };
         };
       };
     };
@@ -57,8 +87,37 @@ export default interface ITranslations {
           pages: string;
         };
       };
+      LoginPage: {
+        LoginForm: {
+          title: string;
+          description: string;
+          emailAddress: {
+            label: string;
+          };
+          password: {
+            label: string;
+          };
+        };
+      };
+      RegisterPage: {
+        RegisterForm: {
+          title: string;
+          description: string;
+          emailAddress: {
+            label: string;
+          };
+          password: {
+            label: string;
+          };
+          passwordConfirm: {
+            label: string;
+          };
+        };
+      };
       FormPage: {
         ExampleForm: {
+          title: string;
+          description: string;
           displayName: {
             label: string;
             description: string;

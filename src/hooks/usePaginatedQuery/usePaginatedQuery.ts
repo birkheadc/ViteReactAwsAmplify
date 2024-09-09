@@ -20,6 +20,7 @@ export type PaginatedQueryReturn<T> = {
     canGoToPrev: boolean;
     canGoToNext: boolean;
   };
+  isMore: boolean;
 };
 
 export function usePaginatedQuery<T>({
@@ -89,5 +90,6 @@ export function usePaginatedQuery<T>({
       canGoToPrev: paginationTokens.length > 0,
       canGoToNext: data?.paginationToken != null,
     },
+    isMore: data?.paginationToken != null,
   };
 }

@@ -1,37 +1,52 @@
-import { UseFormReturn } from "react-hook-form";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 import { Form } from "../../ui/form";
-import { ZodSchema, z } from "zod";
 import SubmitButton from "../SubmitButton/SubmitButton";
-import useRefreshToast from "../../../hooks/useRefreshToast/useRefreshToast";
+import { UseRefreshToastReturn } from "../../../hooks/useRefreshToast/useRefreshToast";
+import { useKeyedTranslation } from "../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import FormTitle from "../FormTitle/FormTitle";
+import FormDescription from "../FormDescription/FormDescription";
+import { UseMutationResult } from "@tanstack/react-query";
+import { ApiError } from "../../../types/apiResult/apiError";
 
-type StandardFormProps<TSchema extends ZodSchema> = {
-  toastId?: string;
-  form: UseFormReturn<z.infer<TSchema>>;
-  onSubmit: (values: z.infer<TSchema>) => void;
+type StandardFormProps<TSchema extends FieldValues> = {
+  title?: string;
+  description?: string;
+  form: UseFormReturn<TSchema>;
+  mutation: UseMutationResult<void, ApiError, TSchema>;
   children: React.ReactNode;
+  toast: UseRefreshToastReturn;
 };
 
-function StandardForm<TSchema extends ZodSchema>({
-  toastId,
+function StandardForm<TSchema extends FieldValues>({
   form,
-  onSubmit,
   children,
+  title,
+  description,
+  mutation,
+  toast,
 }: StandardFormProps<TSchema>): JSX.Element | null {
-  const toast = useRefreshToast(toastId);
+  const { t } = useKeyedTranslation("components.form.StandardForm");
 
-  const submit = (event: React.FormEvent) => {
-    event.preventDefault();
-    form.handleSubmit(onSubmit);
-    console.log("toast wow");
-    toast("Wow");
+  const onInvalid = () => {
+    toast(t("invalid"), "error");
+  };
+
+  const onSubmit = (schema: TSchema) => {
+    mutation.mutate(schema);
   };
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-4 m-auto w-fit" onSubmit={submit}>
+      <form
+        className="flex flex-col max-w-3xl gap-4 m-auto min-w-fit"
+        onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+        title={title}
+      >
+        <FormTitle title={title} />
+        <FormDescription description={description} />
         {children}
-        <div className="flex justify-center w-full">
-          <SubmitButton />
+        <div className="flex justify-end w-full">
+          <SubmitButton isWorking={mutation.isPending} />
         </div>
       </form>
     </Form>
