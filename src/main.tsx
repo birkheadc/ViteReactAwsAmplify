@@ -12,7 +12,7 @@ import i18n from "./localization/i18n";
 
 const t = i18n.t;
 
-const zodCustomErrorMap: z.ZodErrorMap = (issue, ctx) => {
+const zodCustomErrorMap: z.ZodErrorMap = (issue) => {
   switch (issue.code) {
     case "invalid_type":
       return { message: JSON.stringify(issue) };
@@ -67,5 +67,5 @@ z.setErrorMap(zodCustomErrorMap);
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
