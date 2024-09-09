@@ -30,39 +30,3 @@ const login = async (code: string): Promise<CognitoTokens> => {
 };
 
 export default login;
-
-// const login = async ({
-//   emailAddress,
-//   password,
-// }: LoginFormSchema): Promise<AccessToken | null> => {
-//   const url = config.cognito.URL;
-//   const body = JSON.stringify({
-//     ClientId: config.cognito.CLIENT_ID,
-//     AuthFlow: "USER_PASSWORD_AUTH",
-//     AuthParameters: {
-//       USERNAME: emailAddress,
-//       PASSWORD: password,
-//     },
-//   });
-//   const headers = {
-//     "Content-Type": "application/x-amz-json-1.1",
-//     "X-Amz-Target": "AWSCognitoIdentityProviderService.InitiateAuth",
-//   };
-//   const request = {
-//     method: "POST",
-//     body,
-//     headers,
-//   };
-
-//   const response = await fetch(url, request);
-
-//   if (response.status !== 200) {
-//     throw ApiError.LOGIN_FAILED;
-//   }
-
-//   const json = await response.json();
-//   console.log(json);
-//   const accessToken = utils.extractAccessToken(json);
-
-//   return accessToken;
-// };
