@@ -1,14 +1,19 @@
-import config from "../../../config";
 import { Book } from "../../../types/book/book";
 import { Paginated } from "../../../types/paginated/paginated";
+import utils from "../../../utils";
 
 const getPage = async (paginationToken?: string): Promise<Paginated<Book>> => {
-  const url = `${config.api.API_URL}/books/page${paginationToken ? `/${paginationToken}` : ""}`;
-
-  const response = await fetch(url, {
-    method: "GET",
+  const result = await utils.apiFetch({
+    path: `books/page${paginationToken ? `/${paginationToken}` : ""}`,
+    init: {
+      method: "GET",
+    },
+    builder: async (json) => Paginated.fromJson(json, Book.fromJson),
   });
-  return response.json();
+
+  console.log({ result });
+
+  return result;
 };
 
 export default getPage;

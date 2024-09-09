@@ -7,5 +7,5 @@ export function useApi() {
   if (context === undefined)
     throw new Error("useApi must be used within a ApiProvider");
 
-  return context;
+  return context.api;
 }

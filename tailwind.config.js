@@ -43,8 +43,45 @@ export default {
         500: "#bf9a73",
         600: "#997b5c",
         700: "#735c45",
-        800: "#4c3e2e",
+        800: "#382e22",
         900: "#261f17",
+        950: "#1c170e",
+      },
+      success: {
+        50: "#f3f8ed",
+        100: "#e1eed5",
+        200: "#c9e1b5",
+        300: "#a7cd89",
+        400: "#88b863",
+        500: "#699c46",
+        600: "#507c34",
+        700: "#3f5f2c",
+        800: "#354d27",
+        900: "#2f4225",
+      },
+      warning: {
+        50: "#fefcec",
+        100: "#fbf6ca",
+        200: "#f6eb91",
+        300: "#f1db58",
+        400: "#eecc38",
+        500: "#e6ad1a",
+        600: "#cc8713",
+        700: "#a96214",
+        800: "#8a4d16",
+        900: "#713f16",
+      },
+      error: {
+        50: "#fae6e6",
+        100: "#f5cdcd",
+        200: "#eb9a9a",
+        300: "#e16868",
+        400: "#d73535",
+        500: "#cd0303",
+        600: "#a40202",
+        700: "#7b0202",
+        800: "#520101",
+        900: "#290101",
       },
     },
     container: {
@@ -87,6 +124,8 @@ export default {
       addVariant("hocus", ["&:hover", "&:focus"]);
       addVariant("hocus-within", ["&:hover", "&:focus-within"]);
       addVariant("ff", ":-moz-any(&)");
+      addVariant("not-last-child", "&>*:not(:last-child)");
+      addVariant("not-first-child", "&>*:not(:first-child)");
     }),
     animatecss,
   ],

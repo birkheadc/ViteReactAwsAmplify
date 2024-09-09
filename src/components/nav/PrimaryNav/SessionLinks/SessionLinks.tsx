@@ -1,22 +1,11 @@
-import { CircleUserIcon, LogInIcon } from "lucide-react";
-import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
-import PrimaryNavLink from "../PrimaryNavLink/PrimaryNavLink";
+import { useSession } from "../../../../hooks/useSession/useSession";
+import LoggedInLinks from "./LoggedInLinks/LoggedInLinks";
+import LoggedOutLinks from "./LoggedOutLinks/LoggedOutLinks";
 
 function SessionLinks(): JSX.Element | null {
-  const { t } = useKeyedTranslation("components.nav.PrimaryNav.SessionLinks");
+  const { isLoggedIn } = useSession();
 
-  return (
-    <>
-      <PrimaryNavLink to={"/login"}>
-        <LogInIcon size={"1rem"} />
-        {t("login")}
-      </PrimaryNavLink>
-      <PrimaryNavLink to={"/register"}>
-        <CircleUserIcon size={"1rem"} />
-        {t("register")}
-      </PrimaryNavLink>
-    </>
-  );
+  return isLoggedIn ? <LoggedInLinks /> : <LoggedOutLinks />;
 }
 
 export default SessionLinks;
