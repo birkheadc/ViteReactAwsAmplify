@@ -3,6 +3,8 @@ import { User } from "../../types/user/user";
 import { useSession } from "../../hooks/useSession/useSession";
 import { useQuery } from "@tanstack/react-query";
 import { useApi } from "../../hooks/useApi/useApi";
+import { useRefreshToast } from "../../hooks/useRefreshToast/useRefreshToast";
+import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTranslation";
 
 type UserProviderProps = {
   children: React.ReactNode;
@@ -21,12 +23,26 @@ const initialState: UserContextState = {
 export const UserContext = React.createContext(initialState);
 
 export function UserProvider({ children }: UserProviderProps) {
+  const { t } = useKeyedTranslation("contexts.UserContext");
+  const toast = useRefreshToast();
+
   const api = useApi();
-  const { accessToken } = useSession();
+  const { accessToken, logout } = useSession();
 
   const { data, isPending } = useQuery<User>({
     queryKey: ["me"],
-    queryFn: () => api.users.getMe(accessToken),
+    queryFn: async () => {
+      try {
+        const result = await api.users.getMe(accessToken);
+        return result;
+      } catch (error) {
+        toast(t("failed_to_fetch_user"), "error");
+        logout();
+        throw error;
+      }
+    },
+    enabled: accessToken != null,
+    retry: false,
   });
 
   return (

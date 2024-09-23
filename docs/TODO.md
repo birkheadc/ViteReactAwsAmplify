@@ -34,3 +34,8 @@
 - Update npm packages
 
 - There is some weirdness going on in development when going back to pages already loaded in booksdisplay
+
+- Create some kind of overlay when logging in
+
+- Create some kind of system for forcing a user to update their data when it is incomplete (display name must be chosen, etc)
+  - Modal or reroute to profile page form? Hmm...

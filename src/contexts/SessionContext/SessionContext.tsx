@@ -30,7 +30,7 @@ export function SessionProvider({ children }: SessionProviderProps) {
   const api = useApi();
 
   const [accessToken, setAccessToken] = React.useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const isLoggedIn = accessToken != null;
