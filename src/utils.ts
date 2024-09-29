@@ -75,7 +75,7 @@ const createAbortSignal = (): {
   const timeout = setTimeout(() => {
     console.error("Request took too long, aborting...");
     controller.abort();
-  }, 12000);
+  }, 30000);
 
   return {
     signal: controller.signal,
