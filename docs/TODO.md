@@ -38,4 +38,9 @@
 - Create some kind of overlay when logging in
 
 - Create some kind of system for forcing a user to update their data when it is incomplete (display name must be chosen, etc)
+
   - Modal or reroute to profile page form? Hmm...
+
+- Move zod custom error map to a new folder (z) and import it into main.tsx
+
+- Rebuild package-lock.json to see if that fixes vuln / dep issues
