@@ -2,7 +2,11 @@ import config from "../../../config";
 import { ApiError } from "../../../types/apiResult/apiError";
 import { CognitoTokens } from "../../../types/cognito/cognitoTokens";
 
-const login = async (code: string): Promise<CognitoTokens> => {
+const login = async (code: string | undefined): Promise<CognitoTokens> => {
+  if (code == null) {
+    throw ApiError.LOGIN_FAILED;
+  }
+
   const url = `${config.cognito.URL}/oauth2/token`;
   const body = `grant_type=authorization_code&code=${code}&client_id=${config.cognito.CLIENT_ID}&redirect_uri=${window.location.protocol}//${window.location.host}/login`;
   const headers = {

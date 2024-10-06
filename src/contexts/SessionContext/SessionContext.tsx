@@ -1,6 +1,10 @@
 import * as React from "react";
 import { useApi } from "../../hooks/useApi/useApi";
 
+import Modal from 'react-modal';
+import { CognitoTokens } from "../../types/cognito/cognitoTokens";
+import { useQuery } from "@tanstack/react-query";
+
 type SessionProviderProps = {
   children: React.ReactNode;
 };
@@ -8,7 +12,7 @@ type SessionProviderProps = {
 type SessionContextState = {
   isLoggedIn: boolean;
   accessToken: string | undefined;
-  login: (code: string) => Promise<void>;
+  login: (code: string) => void;
   logout: () => void;
 };
 
@@ -29,25 +33,34 @@ export const SessionContext =
 export function SessionProvider({ children }: SessionProviderProps) {
   const api = useApi();
 
-  const [accessToken, setAccessToken] = React.useState<string | undefined>(
-    undefined,
-  );
+  const [ code, setCode ] = React.useState<string | undefined>(undefined);
 
-  const isLoggedIn = accessToken != null;
+  const { data, isPending } = useQuery<CognitoTokens>({
+    queryKey: ["login"],
+    queryFn: async () => api.auth.login(code),
+    enabled: code != null
+  });
 
-  const login = async (code: string) => {
-    const tokens = await api.auth.login(code);
-    setAccessToken(tokens.accessToken);
-    // TODO: Do something with refresh token.
+  const login = (code: string) => {
+    setCode(code);
   };
 
   const logout = () => {
-    setAccessToken(undefined);
+    setCode(undefined);
   };
 
+  React.useEffect(() => {
+    console.log({ code, data })
+  }, [code, data]);
+
   return (
-    <SessionContext.Provider value={{ accessToken, isLoggedIn, login, logout }}>
+    <SessionContext.Provider value={{ accessToken: data?.accessToken, isLoggedIn: data != null, login, logout }}>
       {children}
+      <Modal isOpen={isPending && code != null}>
+        <div>
+          <h1>Logging in...</h1>
+        </div>
+      </Modal>
     </SessionContext.Provider>
   );
 }

@@ -11,7 +11,7 @@ export type BooksApi = {
 
 export type AuthApi = {
   register: (data: RegisterFormSchema) => Promise<void>;
-  login: (code: string) => Promise<CognitoTokens>;
+  login: (code: string | undefined) => Promise<CognitoTokens>;
 };
 
 export type ExampleApi = {

@@ -10,6 +10,8 @@ import App from "./app/App";
 import { z } from "zod";
 import i18n from "./localization/i18n";
 
+import Modal from 'react-modal';
+
 const t = i18n.t;
 
 const zodCustomErrorMap: z.ZodErrorMap = (issue) => {
@@ -63,6 +65,8 @@ const zodCustomErrorMap: z.ZodErrorMap = (issue) => {
 };
 
 z.setErrorMap(zodCustomErrorMap);
+
+Modal.setAppElement("#root");
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
