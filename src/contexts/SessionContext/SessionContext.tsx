@@ -2,8 +2,8 @@ import * as React from "react";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import Modal from 'react-modal';
-import { CognitoTokens } from "../../types/cognito/cognitoTokens";
 import { useQuery } from "@tanstack/react-query";
+import { useRefreshToast } from "../../hooks/useRefreshToast/useRefreshToast";
 
 type SessionProviderProps = {
   children: React.ReactNode;
@@ -11,8 +11,7 @@ type SessionProviderProps = {
 
 type SessionContextState = {
   isLoggedIn: boolean;
-  accessToken: string | undefined;
-  login: (code: string) => void;
+  login: (code: string) => Promise<void>;
   logout: () => void;
 };
 
@@ -24,7 +23,6 @@ const initialState: SessionContextState = {
   logout: function (): void {
     throw new Error("Function not implemented.");
   },
-  accessToken: undefined,
 };
 
 export const SessionContext =
@@ -33,30 +31,45 @@ export const SessionContext =
 export function SessionProvider({ children }: SessionProviderProps) {
   const api = useApi();
 
-  const [ code, setCode ] = React.useState<string | undefined>(undefined);
+  const toast = useRefreshToast("session_context");
 
-  const { data, isPending } = useQuery<CognitoTokens>({
-    queryKey: ["login"],
-    queryFn: async () => api.auth.login(code),
-    enabled: code != null
-  });
+  const [ authCode, setAuthCode ] = React.useState<string | undefined>(undefined);
 
-  const login = (code: string) => {
-    setCode(code);
+  const [ isLoggedIn, setLoggedIn ] = React.useState<boolean>(false);
+
+  const [ isPending, setPending ] = React.useState<boolean>(false);
+
+  const login = async (code: string) => {
+    setAuthCode(code);
   };
 
   const logout = () => {
-    setCode(undefined);
+    setLoggedIn(false);
   };
 
   React.useEffect(() => {
-    console.log({ code, data })
-  }, [code, data]);
+    (async function login() {
+      if (authCode == null) {
+        return;
+      }
+
+      setPending(true);
+      
+      try {
+        await api.auth.login(authCode);
+        setLoggedIn(true);
+      } catch (error) {
+        toast(`login_failed: ${JSON.stringify(error)}`, "error");
+      } finally {
+        setPending(false);
+      }
+    })();
+  }, [ authCode ]);
 
   return (
-    <SessionContext.Provider value={{ accessToken: data?.accessToken, isLoggedIn: data != null, login, logout }}>
+    <SessionContext.Provider value={{ isLoggedIn, login, logout }}>
       {children}
-      <Modal isOpen={isPending && code != null}>
+      <Modal isOpen={isPending}>
         <div>
           <h1>Logging in...</h1>
         </div>

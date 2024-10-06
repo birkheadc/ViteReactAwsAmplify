@@ -1,7 +1,6 @@
 import { ExampleFormSchema } from "../../components/pages/FormPage/ExampleForm/ExampleForm.schema";
 import { RegisterFormSchema } from "../../components/pages/RegisterPage/RegisterForm/RegisterForm.schema";
 import { Book } from "../book/book";
-import { CognitoTokens } from "../cognito/cognitoTokens";
 import { Paginated } from "../paginated/paginated";
 import { User } from "../user/user";
 
@@ -11,7 +10,7 @@ export type BooksApi = {
 
 export type AuthApi = {
   register: (data: RegisterFormSchema) => Promise<void>;
-  login: (code: string | undefined) => Promise<CognitoTokens>;
+  login: (code: string | undefined) => Promise<void>;
 };
 
 export type ExampleApi = {

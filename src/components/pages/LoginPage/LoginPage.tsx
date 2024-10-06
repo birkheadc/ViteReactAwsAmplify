@@ -15,9 +15,9 @@ function LoginPage(): JSX.Element | null {
         navigate("/");
         return;
       }
-      login(code);
+      await login(code);
     })();
-  }, [params, login]);
+  }, [ params, login ]);
 
   return (
     <div>
