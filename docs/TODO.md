@@ -43,6 +43,4 @@
 
 - Move zod custom error map to a new folder (z) and import it into main.tsx
 
-- Rebuild package-lock.json to see if that fixes vuln / dep issues
-
-- remove react-modal, use shadcn dialogue instead?
+- use idtoken fetched by session context to set user info

@@ -1,12 +1,12 @@
 import { ApiError } from "../../../types/apiResult/apiError";
 import utils from "../../../utils";
 
-const login = async (code: string | undefined): Promise<boolean> => {
+const login = async (code: string | undefined): Promise<string> => {
   if (code == null) {
     throw ApiError.LOGIN_FAILED;
   }
 
-  await utils.apiSubmit({
+  const result = await utils.apiFetch({
     path: "session",
     init: {
       method: "POST",
@@ -17,10 +17,14 @@ const login = async (code: string | undefined): Promise<boolean> => {
       headers: {
         "Content-Type": "application/json",
       }
+    },
+    builder: async (json) => {
+      if (json == null || typeof json !== "object" || !("value" in json) || typeof json.value !== "string") throw ApiError.UNEXPECTED_FORMAT;
+      return json.value;
     }
-  })
-
-  return true;
+  });
+  
+  return result;
 };
 
 export default login;

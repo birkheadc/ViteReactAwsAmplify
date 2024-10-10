@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useApi } from "../../hooks/useApi/useApi";
 
-import Modal from 'react-modal';
-import { useQuery } from "@tanstack/react-query";
+import Modal from "react-modal";
 import { useRefreshToast } from "../../hooks/useRefreshToast/useRefreshToast";
 
 type SessionProviderProps = {
@@ -33,11 +32,11 @@ export function SessionProvider({ children }: SessionProviderProps) {
 
   const toast = useRefreshToast("session_context");
 
-  const [ authCode, setAuthCode ] = React.useState<string | undefined>(undefined);
+  const [authCode, setAuthCode] = React.useState<string | undefined>(undefined);
 
-  const [ isLoggedIn, setLoggedIn ] = React.useState<boolean>(false);
+  const [isLoggedIn, setLoggedIn] = React.useState<boolean>(false);
 
-  const [ isPending, setPending ] = React.useState<boolean>(false);
+  const [isPending, setPending] = React.useState<boolean>(false);
 
   const login = async (code: string) => {
     setAuthCode(code);
@@ -54,9 +53,10 @@ export function SessionProvider({ children }: SessionProviderProps) {
       }
 
       setPending(true);
-      
+
       try {
-        await api.auth.login(authCode);
+        const idToken = await api.auth.login(authCode);
+        console.log(`Got IdToken: ${idToken}`);
         setLoggedIn(true);
       } catch (error) {
         toast(`login_failed: ${JSON.stringify(error)}`, "error");
@@ -64,7 +64,7 @@ export function SessionProvider({ children }: SessionProviderProps) {
         setPending(false);
       }
     })();
-  }, [ authCode ]);
+  }, [authCode]);
 
   return (
     <SessionContext.Provider value={{ isLoggedIn, login, logout }}>
