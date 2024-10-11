@@ -18,7 +18,7 @@ export type ExampleApi = {
 };
 
 export type UsersApi = {
-  getMe: (accessToken: string | undefined) => Promise<User>;
+  getMe: () => Promise<User>;
 };
 
 export type Api = {

@@ -108,7 +108,7 @@ const apiSubmit = async ({ path, init }: ApiSubmitOptions): Promise<void> => {
 
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal });
+    response = await fetch(url, { ...init, signal, credentials: 'include' });
   } catch (error) {
     throw ApiError.fromJson(error);
   } finally {
@@ -141,7 +141,7 @@ const apiFetch = async <T>({
 
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal });
+    response = await fetch(url, { ...init, signal, credentials: 'include' });
   } catch (error) {
     throw ApiError.fromJson(error);
   } finally {

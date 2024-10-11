@@ -27,13 +27,13 @@ export function UserProvider({ children }: UserProviderProps) {
   const toast = useRefreshToast();
 
   const api = useApi();
-  const { accessToken, logout } = useSession();
+  const { isLoggedIn, logout } = useSession();
 
   const { data, isPending } = useQuery<User>({
     queryKey: ["me"],
     queryFn: async () => {
       try {
-        const result = await api.users.getMe(accessToken);
+        const result = await api.users.getMe();
         return result;
       } catch (error) {
         toast(t("failed_to_fetch_user"), "error");
@@ -41,7 +41,7 @@ export function UserProvider({ children }: UserProviderProps) {
         throw error;
       }
     },
-    enabled: accessToken != null,
+    enabled: isLoggedIn,
     retry: false,
   });
 
