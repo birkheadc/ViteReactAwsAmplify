@@ -6,10 +6,10 @@ import { Skeleton } from "../../../../ui/skeleton";
 
 function LoggedInLinks(): JSX.Element | null {
   const { t } = useKeyedTranslation(
-    "components.nav.PrimaryNav.SessionLinks.LoggedInLinks"
+    "components.nav.PrimaryNav.SessionLinks.LoggedInLinks",
   );
 
-  const { user, isPending } = useMe();
+  const user = useMe();
 
   return (
     <>
@@ -19,10 +19,10 @@ function LoggedInLinks(): JSX.Element | null {
       </PrimaryNavLink>
       <PrimaryNavLink to={"/profile"}>
         <UserIcon size="1rem" />
-        {isPending ? (
+        {user == null ? (
           <Skeleton className="w-20 h-4 " />
         ) : (
-          (user?.displayName ?? t("profile"))
+          (user.displayName ?? user.emailAddress)
         )}
       </PrimaryNavLink>
     </>

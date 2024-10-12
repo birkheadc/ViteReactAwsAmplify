@@ -1,7 +1,8 @@
 import { ApiError } from "../../../types/apiResult/apiError";
+import { User } from "../../../types/user/user";
 import utils from "../../../utils";
 
-const login = async (code: string | undefined): Promise<string> => {
+const login = async (code: string | undefined): Promise<User> => {
   if (code == null) {
     throw ApiError.LOGIN_FAILED;
   }
@@ -18,10 +19,7 @@ const login = async (code: string | undefined): Promise<string> => {
         "Content-Type": "application/json",
       }
     },
-    builder: async (json) => {
-      if (json == null || typeof json !== "object" || !("value" in json) || typeof json.value !== "string") throw ApiError.UNEXPECTED_FORMAT;
-      return json.value;
-    }
+    builder: User.fromJson
   });
   
   return result;

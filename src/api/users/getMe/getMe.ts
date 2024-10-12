@@ -7,7 +7,7 @@ const getMe = async (): Promise<User> => {
     init: {
       method: "GET",
     },
-    builder: async (json) => User.fromJson(json),
+    builder: User.fromJson,
   });
 
   return result;

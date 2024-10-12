@@ -3,7 +3,7 @@ export class User {
   emailAddress: string = "";
   displayName?: string;
 
-  static fromJson(json: unknown): User {
+  static async fromJson(json: unknown): Promise<User> {
     const user = new User();
 
     if (json == null || typeof json !== "object") return user;

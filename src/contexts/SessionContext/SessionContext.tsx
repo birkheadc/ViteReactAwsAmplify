@@ -3,6 +3,7 @@ import { useApi } from "../../hooks/useApi/useApi";
 
 import Modal from "react-modal";
 import { useRefreshToast } from "../../hooks/useRefreshToast/useRefreshToast";
+import { User } from "../../types/user/user";
 
 type SessionProviderProps = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ type SessionContextState = {
   isLoggedIn: boolean;
   login: (code: string) => Promise<void>;
   logout: () => void;
+  user: User | undefined;
 };
 
 const initialState: SessionContextState = {
@@ -22,6 +24,7 @@ const initialState: SessionContextState = {
   logout: function (): void {
     throw new Error("Function not implemented.");
   },
+  user: undefined,
 };
 
 export const SessionContext =
@@ -38,12 +41,15 @@ export function SessionProvider({ children }: SessionProviderProps) {
 
   const [isPending, setPending] = React.useState<boolean>(false);
 
+  const [user, setUser] = React.useState<User | undefined>(undefined);
+
   const login = async (code: string) => {
     setAuthCode(code);
   };
 
   const logout = () => {
     setLoggedIn(false);
+    setUser(undefined);
   };
 
   React.useEffect(() => {
@@ -55,8 +61,9 @@ export function SessionProvider({ children }: SessionProviderProps) {
       setPending(true);
 
       try {
-        const idToken = await api.auth.login(authCode);
-        console.log(`Got IdToken: ${idToken}`);
+        const user = await api.auth.login(authCode);
+        setUser(user);
+        console.log(`Got User: ${JSON.stringify({ user })}`);
         setLoggedIn(true);
       } catch (error) {
         toast(`login_failed: ${JSON.stringify(error)}`, "error");
@@ -67,7 +74,7 @@ export function SessionProvider({ children }: SessionProviderProps) {
   }, [authCode]);
 
   return (
-    <SessionContext.Provider value={{ isLoggedIn, login, logout }}>
+    <SessionContext.Provider value={{ isLoggedIn, login, logout, user }}>
       {children}
       <Modal isOpen={isPending}>
         <div>

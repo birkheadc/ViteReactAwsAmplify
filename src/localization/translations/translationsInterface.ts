@@ -143,9 +143,4 @@ export default interface ITranslations {
       };
     };
   };
-  contexts: {
-    UserContext: {
-      failed_to_fetch_user: string;
-    };
-  };
 }

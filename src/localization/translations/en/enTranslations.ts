@@ -153,12 +153,6 @@ const enTranslations: ITranslations = {
       },
     },
   },
-  contexts: {
-    UserContext: {
-      failed_to_fetch_user:
-        "Something went wrong while logging in. Please try again.",
-    },
-  },
 };
 
 export default enTranslations;
