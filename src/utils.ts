@@ -108,7 +108,7 @@ const apiSubmit = async ({ path, init }: ApiSubmitOptions): Promise<void> => {
 
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal, credentials: 'include' });
+    response = await fetch(url, { ...init, signal, credentials: "include" });
   } catch (error) {
     throw ApiError.fromJson(error);
   } finally {
@@ -141,20 +141,24 @@ const apiFetch = async <T>({
 
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal, credentials: 'include' });
+    response = await fetch(url, { ...init, signal, credentials: "include" });
   } catch (error) {
     throw ApiError.fromJson(error);
   } finally {
     clearAbortSignal();
   }
 
-  const json = await response.json();
-  if (!response.ok) {
-    throw ApiError.fromJson(json);
-  }
   try {
-    return await builder(json);
-  } catch {
+    const json = await response.json();
+    if (!response.ok) {
+      throw ApiError.fromJson(json);
+    }
+    try {
+      return await builder(json);
+    } catch {
+      throw ApiError.UNEXPECTED_FORMAT;
+    }
+  } catch (error) {
     throw ApiError.UNEXPECTED_FORMAT;
   }
 };
