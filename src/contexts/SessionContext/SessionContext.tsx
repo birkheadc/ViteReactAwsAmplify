@@ -102,11 +102,17 @@ export function SessionProvider({ children }: SessionProviderProps) {
       toast(t("loginSucceeded"), { type: "success" });
     } catch (error) {
       toast(t("automaticLoginFailed"), { type: "error" });
+      // In the case of an unexpected error, remove the previous session key from localStorage
+      // so the user can try to log in again manually.
+      if (!utils.isKnownTemporaryError(error)) {
+        utils.removePreviousSessionKeyFromLocalStorage();
+      }
     } finally {
       setStatus(undefined);
     }
   });
 
+  // TODO: This loops forever because the function modifies its own dependencies. (isPending)
   React.useEffect(attemptToRetrieveSession, [attemptToRetrieveSession]);
 
   return (

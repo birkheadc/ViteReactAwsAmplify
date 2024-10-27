@@ -1,7 +1,11 @@
+import { UserProfile } from "./userProfile";
+import { UserRoles } from "./userRoles";
+
 export class User {
   id: string = "";
   emailAddress: string = "";
-  displayName?: string;
+  profile: UserProfile = new UserProfile();
+  roles: UserRoles = new UserRoles();
 
   static async fromJson(json: unknown): Promise<User> {
     const user = new User();
@@ -11,8 +15,11 @@ export class User {
     if ("id" in json && typeof json.id === "string") user.id = json.id;
     if ("emailAddress" in json && typeof json.emailAddress === "string")
       user.emailAddress = json.emailAddress;
-    if ("displayName" in json && typeof json.displayName === "string")
-      user.displayName = json.displayName;
+    if ("profile" in json && typeof json.profile === "object")
+      user.profile = await UserProfile.fromJson(json.profile);
+
+    if ("roles" in json && typeof json.roles === "object")
+      user.roles = await UserRoles.fromJson(json.roles);
 
     return user;
   }

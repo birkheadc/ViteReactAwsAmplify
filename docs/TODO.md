@@ -43,4 +43,4 @@
 
 - Move zod custom error map to a new folder (z) and import it into main.tsx
 
-- use idtoken fetched by session context to set user info
+- The app spams error toasts when logging in automatically and it fails, test with api offline

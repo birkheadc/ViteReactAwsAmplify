@@ -22,7 +22,7 @@ function LoggedInLinks(): JSX.Element | null {
         {user == null ? (
           <Skeleton className="w-20 h-4 " />
         ) : (
-          (user.displayName ?? user.emailAddress)
+          (user.profile.displayName ?? user.emailAddress)
         )}
       </PrimaryNavLink>
       <PrimaryNavButton onClick={logout}>

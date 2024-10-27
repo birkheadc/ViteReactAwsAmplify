@@ -148,16 +148,19 @@ const apiFetch = async <T>({
     clearAbortSignal();
   }
 
+  let json: unknown;
   try {
-    const json = await response.json();
-    if (!response.ok) {
-      throw ApiError.fromJson(json);
-    }
-    try {
-      return await builder(json);
-    } catch {
-      throw ApiError.UNEXPECTED_FORMAT;
-    }
+    json = await response.json();
+  } catch (error) {
+    throw ApiError.UNEXPECTED_FORMAT;
+  }
+
+  if (!response.ok) {
+    throw ApiError.fromJson(json);
+  }
+
+  try {
+    return await builder(json);
   } catch (error) {
     throw ApiError.UNEXPECTED_FORMAT;
   }
