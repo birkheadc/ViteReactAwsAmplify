@@ -15,7 +15,7 @@ function AboutPage(): JSX.Element | null {
       <h1>About Page</h1>
       <p>Welcome to the About Page</p>
 
-      <SecondaryButton onClick={dedup}>Click me</SecondaryButton>
+      <SecondaryButton onClick={dedup}>Test Dedup</SecondaryButton>
     </div>
   );
 }
