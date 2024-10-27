@@ -11,6 +11,7 @@ export type BooksApi = {
 export type AuthApi = {
   register: (data: RegisterFormSchema) => Promise<void>;
   login: (code: string | undefined) => Promise<User>;
+  logout: () => Promise<void>;
 };
 
 export type ExampleApi = {

@@ -10,7 +10,7 @@ function ThemeSwitch(): JSX.Element | null {
   };
 
   return (
-    <div>
+    <div className="flex items-center gap-2">
       <Switch checked={theme === "dark"} onCheckedChange={handleCheckedChange}>
         {theme === "dark" ? (
           <MoonIcon className="p-0.5" size="100%" />

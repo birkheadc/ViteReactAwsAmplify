@@ -5,18 +5,18 @@ import { useKeyedTranslation } from "../../../../../hooks/useKeyedTranslation/us
 
 function LoggedOutLinks(): JSX.Element | null {
   const { t } = useKeyedTranslation(
-    "components.nav.PrimaryNav.SessionLinks.LoggedOutLinks"
+    "components.nav.PrimaryNav.SessionLinks.LoggedOutLinks",
   );
 
   return (
     <>
-      <PrimaryNavLink to={config.cognito.LOGIN_URL}>
-        <LogInIcon size={"1rem"} />
-        {t("login")}
-      </PrimaryNavLink>
       <PrimaryNavLink to={config.cognito.REGISTER_URL}>
         <CircleUserIcon size={"1rem"} />
         {t("register")}
+      </PrimaryNavLink>
+      <PrimaryNavLink to={config.cognito.LOGIN_URL}>
+        <LogInIcon size={"1rem"} />
+        {t("login")}
       </PrimaryNavLink>
     </>
   );

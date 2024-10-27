@@ -1,9 +1,13 @@
 import * as React from "react";
 import { useApi } from "../../hooks/useApi/useApi";
 
-import Modal from "react-modal";
-import { useRefreshToast } from "../../hooks/useRefreshToast/useRefreshToast";
 import { User } from "../../types/user/user";
+import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTranslation";
+import BasicModal from "../../components/common/BasicModal/BasicModal";
+import { toast } from "react-toastify";
+import { useDedup } from "../../hooks/useDedup/useDedup";
+
+import utils from "./SessionContext.utils";
 
 type SessionProviderProps = {
   children: React.ReactNode;
@@ -12,7 +16,7 @@ type SessionProviderProps = {
 type SessionContextState = {
   isLoggedIn: boolean;
   login: (code: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   user: User | undefined;
 };
 
@@ -21,7 +25,7 @@ const initialState: SessionContextState = {
     throw new Error("Function not implemented.");
   },
   isLoggedIn: false,
-  logout: function (): void {
+  logout: function (): Promise<void> {
     throw new Error("Function not implemented.");
   },
   user: undefined,
@@ -33,54 +37,86 @@ export const SessionContext =
 export function SessionProvider({ children }: SessionProviderProps) {
   const api = useApi();
 
-  const toast = useRefreshToast("session_context");
+  const { t } = useKeyedTranslation("contexts.SessionContext");
 
-  const [authCode, setAuthCode] = React.useState<string | undefined>(undefined);
-
-  const [isLoggedIn, setLoggedIn] = React.useState<boolean>(false);
-
-  const [isPending, setPending] = React.useState<boolean>(false);
+  const [status, setStatus] = React.useState<
+    "loggingIn" | "loggingOut" | undefined
+  >(undefined);
+  const isPending = !!status;
 
   const [user, setUser] = React.useState<User | undefined>(undefined);
+  const isLoggedIn = !!user;
 
+  const previousSession = utils.getPreviousSessionKeyFromLocalStorage();
+
+  // Send the authentication code to the server to authenticate.
+  // The server should add http-only cookies to the response, which will be automatically saved by the browser and authenticate further requests.
+  // The server should also return a user object, which will be saved in memory in this context for use by the rest of the application.
   const login = async (code: string) => {
-    setAuthCode(code);
+    if (isPending) {
+      return;
+    }
+
+    setStatus("loggingIn");
+    try {
+      const user = await api.auth.login(code);
+
+      toast(t("loginSucceeded"), { type: "success" });
+      setUser(user);
+      utils.setPreviousSessionKeyInLocalStorage("true");
+    } catch (error) {
+      toast(t("loginFailed"), { type: "error" });
+    } finally {
+      setStatus(undefined);
+    }
   };
 
-  const logout = () => {
-    setLoggedIn(false);
+  // Send a request to the server to log the user out.
+  // The server should revoke the user's authentication cookies, which will automatically log the user out.
+  // The application should remove the user's information from memory, and remove the "previousSession" key from localStorage
+  // so the app will not attempt to automatically log the user back in on next refresh.
+  const logout = async () => {
+    if (isPending) {
+      return;
+    }
+    setStatus("loggingOut");
+
+    await api.auth.logout();
+
+    toast(t("logoutSucceeded"), { type: "success" });
     setUser(undefined);
+    utils.removePreviousSessionKeyFromLocalStorage();
+    setStatus(undefined);
   };
 
-  React.useEffect(() => {
-    (async function login() {
-      if (authCode == null) {
-        return;
-      }
+  // Attempt to retrieve the session from the server if the user has a previous session key in localStorage.
+  // This is used to automatically log the user back in on page refresh if they have a valid session.
+  const attemptToRetrieveSession = useDedup(async () => {
+    if (!previousSession || isLoggedIn || isPending) {
+      return;
+    }
+    setStatus("loggingIn");
+    try {
+      const user = await api.users.getMe();
+      setUser(user);
+      toast(t("loginSucceeded"), { type: "success" });
+    } catch (error) {
+      toast(t("automaticLoginFailed"), { type: "error" });
+    } finally {
+      setStatus(undefined);
+    }
+  });
 
-      setPending(true);
-
-      try {
-        const user = await api.auth.login(authCode);
-        setUser(user);
-        console.log(`Got User: ${JSON.stringify({ user })}`);
-        setLoggedIn(true);
-      } catch (error) {
-        toast(`login_failed: ${JSON.stringify(error)}`, "error");
-      } finally {
-        setPending(false);
-      }
-    })();
-  }, [authCode]);
+  React.useEffect(attemptToRetrieveSession, [attemptToRetrieveSession]);
 
   return (
     <SessionContext.Provider value={{ isLoggedIn, login, logout, user }}>
       {children}
-      <Modal isOpen={isPending}>
+      <BasicModal isOpen={isPending}>
         <div>
-          <h1>Logging in...</h1>
+          <span>{status && t(status)}</span>
         </div>
-      </Modal>
+      </BasicModal>
     </SessionContext.Provider>
   );
 }

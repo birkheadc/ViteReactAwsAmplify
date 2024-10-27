@@ -20,7 +20,7 @@ function PrimaryNavLink({
             "font-bold text-primary-50 border-primary-50 pointer-events-none":
               isActive,
             "background-primary-100": isPending,
-          }
+          },
         )
       }
       to={to}

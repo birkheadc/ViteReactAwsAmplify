@@ -38,8 +38,7 @@ const enTranslations: ITranslations = {
         ExampleForm: {
           displayName: {
             label: "display name",
-            description:
-              "the name other users will recognize you by. it cannot be `colby`, because that is my name!",
+            description: "the name other users will recognize you by. it cannot be `colby`, because that is my name!",
           },
           password: {
             label: "password",
@@ -47,23 +46,19 @@ const enTranslations: ITranslations = {
           },
           secretCode: {
             label: "secret code",
-            description:
-              "the server will tell you what to put here after you submit once",
+            description: "the server will tell you what to put here after you submit once",
           },
           passwordConfirm: {
             label: "confirm password",
-            description:
-              "this has to perfectly match the previous password field",
+            description: "this has to perfectly match the previous password field",
           },
           title: "example form",
-          description:
-            "This form can be used for developing and testing the form framework, to check how style changes affect forms, or as a general demo. I try to incorporate all new inputs into the form as well, so it can also be used as a library of form components.",
+          description: "This form can be used for developing and testing the form framework, to check how style changes affect forms, or as a general demo. I try to incorporate all new inputs into the form as well, so it can also be used as a library of form components.",
         },
       },
       ToastPage: {
         ToastTestButtons: {
-          message:
-            "Press the buttons below to try out what various toasts look like.",
+          message: "Press the buttons below to try out what various toasts look like.",
           info: {
             message: "Here is some information in an `Info` toast!",
             button: "info",
@@ -84,8 +79,7 @@ const enTranslations: ITranslations = {
             message: "This is the `Default` type of toast.",
             button: "default",
           },
-          explanation:
-            "Notice that the toast refreshes if you press it before the previous one disappears, rather than a new one stacking up. This is because the buttons use a custom `useRefreshToast` hook, where any toast that shares an ID with a currently visible toast will replace it.The next group of buttons don't use this system, so try them as well!",
+          explanation: "Notice that the toast refreshes if you press it before the previous one disappears, rather than a new one stacking up. This is because the buttons use a custom `useRefreshToast` hook, where any toast that shares an ID with a currently visible toast will replace it.The next group of buttons don't use this system, so try them as well!",
         },
       },
       LoginPage: {
@@ -140,17 +134,26 @@ const enTranslations: ITranslations = {
         needsUppercase: "Must contain an uppercase letter.",
         needsLowercase: "Must contain a lowercase letter.",
         needsNumber: "Must contain a number.",
-        needsSymbol:
-          "Must contain one of the following symbols: ^ $ * . [ ] { } ( ) ? - \" ! @ # % & / \\ , > < ' : ; | _ ~ ` + = ",
+        needsSymbol: "Must contain one of the following symbols: ^ $ * . [ ] { } ( ) ? - \" ! @ # % & / \\ , > < ' : ; | _ ~ ` + = ",
       },
       status: {
         400: "There were one or more problems with your request.",
       },
       errorCode: {
         loginFailed: "Failed to login with these credentials.",
-        registrationFailed:
-          "Failed to register an account with these credentials.",
+        registrationFailed: "Failed to register an account with these credentials.",
       },
+    },
+  },
+  contexts: {
+    SessionContext: {
+      loginFailed: "Something went wrong while logging in.",
+      loginSucceeded: "Logged in successfully.",
+      logoutSucceeded: "Logged out successfully.",
+      automaticLoginFailed: "Something went wrong while automatically logging you in.",
+      working: "Working...",
+      loggingIn: "Logging in...",
+      loggingOut: "Logging out...",
     },
   },
 };

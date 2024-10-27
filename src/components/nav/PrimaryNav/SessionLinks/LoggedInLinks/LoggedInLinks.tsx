@@ -3,20 +3,20 @@ import PrimaryNavLink from "../../PrimaryNavLink/PrimaryNavLink";
 import { useKeyedTranslation } from "../../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import { useMe } from "../../../../../hooks/useMe/useMe";
 import { Skeleton } from "../../../../ui/skeleton";
+import { useSession } from "../../../../../hooks/useSession/useSession";
+import PrimaryNavButton from "../../PrimaryNavButton/PrimaryNavButton";
 
 function LoggedInLinks(): JSX.Element | null {
   const { t } = useKeyedTranslation(
     "components.nav.PrimaryNav.SessionLinks.LoggedInLinks",
   );
 
+  const { logout } = useSession();
+
   const user = useMe();
 
   return (
     <>
-      <PrimaryNavLink to={"/logout"}>
-        <LogOutIcon size="1rem" />
-        {t("logout")}
-      </PrimaryNavLink>
       <PrimaryNavLink to={"/profile"}>
         <UserIcon size="1rem" />
         {user == null ? (
@@ -25,6 +25,10 @@ function LoggedInLinks(): JSX.Element | null {
           (user.displayName ?? user.emailAddress)
         )}
       </PrimaryNavLink>
+      <PrimaryNavButton onClick={logout}>
+        <LogOutIcon size="1rem" />
+        {t("logout")}
+      </PrimaryNavButton>
     </>
   );
 }

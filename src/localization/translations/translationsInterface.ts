@@ -1,4 +1,15 @@
 export default interface ITranslations {
+  contexts: {
+    SessionContext: {
+      loginFailed: string;
+      loginSucceeded: string;
+      logoutSucceeded: string;
+      automaticLoginFailed: string;
+      working: string;
+      loggingIn: string;
+      loggingOut: string;
+    };
+  };
   components: {
     form: {
       errorCode: {
