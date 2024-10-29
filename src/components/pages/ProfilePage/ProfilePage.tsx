@@ -1,32 +1,15 @@
-import React from "react";
-import utils from "../../../utils";
-import { User } from "../../../types/user/user";
-import { useRefreshToast } from "../../../hooks/useRefreshToast/useRefreshToast";
+import UpdateProfileForm from "./UpdateProfileForm/UpdateProfileForm";
+import { useSession } from "../../../hooks/useSession/useSession";
 
 function ProfilePage(): JSX.Element | null {
-  const toast = useRefreshToast("profile-page");
+  const { user } = useSession();
 
-  React.useEffect(() => {
-    (async function fetchMe() {
-      try {
-        const result = await utils.apiFetch({
-          path: `me`,
-          init: {
-            method: "GET",
-          },
-          builder: User.fromJson,
-        });
-        console.log(result);
-      } catch (error) {
-        toast("Failed to fetch me", "error");
-      }
-    })();
-  }, [toast]);
+  console.log(user);
 
   return (
     <div>
-      <h1>ProfilePage</h1>
-      <p>Todo: Show profile</p>
+      <h1>Profile Page</h1>
+      <UpdateProfileForm />
     </div>
   );
 }

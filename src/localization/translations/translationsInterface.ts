@@ -65,6 +65,16 @@ export default interface ITranslations {
       };
     };
     pages: {
+      ProfilePage: {
+        UpdateProfileForm: {
+          title: string;
+          description: string;
+          displayName: {
+            label: string;
+            description: string;
+          };
+        };
+      };
       ToastPage: {
         ToastTestButtons: {
           message: string;
@@ -106,21 +116,6 @@ export default interface ITranslations {
             label: string;
           };
           password: {
-            label: string;
-          };
-        };
-      };
-      RegisterPage: {
-        RegisterForm: {
-          title: string;
-          description: string;
-          emailAddress: {
-            label: string;
-          };
-          password: {
-            label: string;
-          };
-          passwordConfirm: {
             label: string;
           };
         };

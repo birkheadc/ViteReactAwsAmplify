@@ -13,7 +13,7 @@ type StandardFormProps<TSchema extends FieldValues> = {
   description?: string;
   form: UseFormReturn<TSchema>;
   mutation: UseMutationResult<void, ApiError, TSchema>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   toast: UseRefreshToastReturn;
 };
 

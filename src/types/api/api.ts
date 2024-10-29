@@ -1,5 +1,5 @@
 import { ExampleFormSchema } from "../../components/pages/FormPage/ExampleForm/ExampleForm.schema";
-import { RegisterFormSchema } from "../../components/pages/RegisterPage/RegisterForm/RegisterForm.schema";
+import { UpdateProfileFormSchema } from "../../components/pages/ProfilePage/UpdateProfileForm/UpdateProfileForm.schema";
 import { Book } from "../book/book";
 import { Paginated } from "../paginated/paginated";
 import { User } from "../user/user";
@@ -9,7 +9,6 @@ export type BooksApi = {
 };
 
 export type AuthApi = {
-  register: (data: RegisterFormSchema) => Promise<void>;
   login: (code: string | undefined) => Promise<User>;
   logout: () => Promise<void>;
 };
@@ -20,6 +19,7 @@ export type ExampleApi = {
 
 export type UsersApi = {
   getMe: () => Promise<User>;
+  updateProfile: (data: UpdateProfileFormSchema) => Promise<void>;
 };
 
 export type Api = {
