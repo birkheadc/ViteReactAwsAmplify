@@ -4,6 +4,7 @@ import { ApiProvider } from "../ApiContext/ApiContext";
 import { ThemeProvider } from "../ThemeContext/ThemeContext";
 import Toast from "../../components/toast/Toast/Toast";
 import { SessionProvider } from "../SessionContext/SessionContext";
+import { MeProvider } from "../MeContext/MeContext";
 
 type ContextProvidersProps = {
   children?: React.ReactNode;
@@ -17,12 +18,14 @@ export function ContextProviders({
   return (
     <ApiProvider api={api}>
       <QueryClientProvider client={queryClient}>
-        <SessionProvider>
-          <ThemeProvider>
-            <Toast />
-            {children}
-          </ThemeProvider>
-        </SessionProvider>
+        <MeProvider>
+          <SessionProvider>
+            <ThemeProvider>
+              <Toast />
+              {children}
+            </ThemeProvider>
+          </SessionProvider>
+        </MeProvider>
       </QueryClientProvider>
     </ApiProvider>
   );

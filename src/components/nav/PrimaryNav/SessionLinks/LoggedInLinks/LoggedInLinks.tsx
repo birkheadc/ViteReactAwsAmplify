@@ -13,7 +13,7 @@ function LoggedInLinks(): JSX.Element | null {
 
   const { logout } = useSession();
 
-  const user = useMe();
+  const { user } = useMe();
 
   return (
     <>

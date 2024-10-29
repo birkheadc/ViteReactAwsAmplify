@@ -160,6 +160,9 @@ const enTranslations: ITranslations = {
       loggingIn: "Logging in...",
       loggingOut: "Logging out...",
     },
+    MeContext: {
+      loggingIn: "Logging in...",
+    },
   },
 };
 

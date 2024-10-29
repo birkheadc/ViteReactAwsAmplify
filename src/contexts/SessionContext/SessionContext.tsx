@@ -5,9 +5,8 @@ import { User } from "../../types/user/user";
 import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTranslation";
 import BasicModal from "../../components/common/BasicModal/BasicModal";
 import { toast } from "react-toastify";
-import { useDedup } from "../../hooks/useDedup/useDedup";
 
-import utils from "./SessionContext.utils";
+import { useMe } from "../../hooks/useMe/useMe";
 
 type SessionProviderProps = {
   children: React.ReactNode;
@@ -44,10 +43,8 @@ export function SessionProvider({ children }: SessionProviderProps) {
   >(undefined);
   const isPending = status === "loggingIn" || status === "loggingOut";
 
-  const [user, setUser] = React.useState<User | undefined>(undefined);
+  const { user, setUser } = useMe();
   const isLoggedIn = !!user;
-
-  const previousSession = utils.getPreviousSessionKeyFromLocalStorage();
 
   // Send the authentication code to the server to authenticate.
   // The server should add http-only cookies to the response, which will be automatically saved by the browser and authenticate further requests.
@@ -63,15 +60,15 @@ export function SessionProvider({ children }: SessionProviderProps) {
         const user = await api.auth.login(code);
 
         toast(t("loginSucceeded"), { type: "success" });
+
         setUser(user);
-        utils.setPreviousSessionKeyInLocalStorage("true");
       } catch (error) {
         toast(t("loginFailed"), { type: "error" });
       } finally {
         setStatus("idle");
       }
     },
-    [api, isPending, t],
+    [api, isPending, t, setUser],
   );
 
   // Send a request to the server to log the user out.
@@ -88,41 +85,8 @@ export function SessionProvider({ children }: SessionProviderProps) {
 
     toast(t("logoutSucceeded"), { type: "success" });
     setUser(undefined);
-    utils.removePreviousSessionKeyFromLocalStorage();
     setStatus("idle");
-  }, [api, isPending, t]);
-
-  // Attempt to retrieve the session from the server if the user has a previous session key in localStorage.
-  // This is used to automatically log the user back in on page refresh if they have a valid session.
-  const attemptRetrieveSession = useDedup(
-    React.useCallback(async () => {
-      if (!previousSession || isLoggedIn) {
-        return;
-      }
-      setStatus("loggingIn");
-      try {
-        const user = await api.users.getMe();
-        setUser(user);
-        toast(t("loginSucceeded"), { type: "success" });
-      } catch (error) {
-        toast(t("automaticLoginFailed"), { type: "error" });
-        // In the case of an unexpected error, remove the previous session key from localStorage
-        // so the user can try to log in again manually.
-        if (!utils.isKnownTemporaryError(error)) {
-          utils.removePreviousSessionKeyFromLocalStorage();
-        }
-      } finally {
-        setStatus("idle");
-      }
-    }, [api, isLoggedIn, previousSession, t]),
-  );
-
-  React.useEffect(() => {
-    if (status !== undefined) {
-      return;
-    }
-    attemptRetrieveSession();
-  }, [attemptRetrieveSession, status]);
+  }, [api, isPending, t, setUser]);
 
   return (
     <SessionContext.Provider value={{ isLoggedIn, login, logout, user }}>

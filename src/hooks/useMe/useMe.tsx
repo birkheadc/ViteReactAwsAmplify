@@ -1,13 +1,12 @@
 import React from "react";
-import { SessionContext } from "../../contexts/SessionContext/SessionContext";
-import { User } from "../../types/user/user";
+import { MeContext, MeContextState } from "../../contexts/MeContext/MeContext";
 
-export function useMe(): User | undefined {
-  const context = React.useContext(SessionContext);
+export function useMe(): MeContextState {
+  const context = React.useContext(MeContext);
 
   if (context === undefined) {
     throw new Error("useMe must be used within a UserProvider");
   }
 
-  return context.user;
+  return context;
 }

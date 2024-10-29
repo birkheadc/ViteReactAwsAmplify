@@ -1,8 +1,8 @@
 import UpdateProfileForm from "./UpdateProfileForm/UpdateProfileForm";
-import { useSession } from "../../../hooks/useSession/useSession";
+import { useMe } from "../../../hooks/useMe/useMe";
 
 function ProfilePage(): JSX.Element | null {
-  const { user } = useSession();
+  const { user } = useMe();
 
   console.log(user);
 

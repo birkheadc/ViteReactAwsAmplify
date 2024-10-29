@@ -9,6 +9,9 @@ export default interface ITranslations {
       loggingIn: string;
       loggingOut: string;
     };
+    MeContext: {
+      loggingIn: string;
+    };
   };
   components: {
     form: {
