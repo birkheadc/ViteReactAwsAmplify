@@ -4,12 +4,11 @@ import { useMe } from "../../../hooks/useMe/useMe";
 function ProfilePage(): JSX.Element | null {
   const { user } = useMe();
 
-  console.log(user);
-
   return (
     <div>
       <h1>Profile Page</h1>
-      <UpdateProfileForm />
+      {/* User should never be null when this page is active so no need to add a fallback */}
+      {user && <UpdateProfileForm user={user} />}
     </div>
   );
 }

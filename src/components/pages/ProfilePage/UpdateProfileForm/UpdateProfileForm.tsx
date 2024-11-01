@@ -1,6 +1,7 @@
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 import { useStandardForm } from "../../../../hooks/useStandardForm/useStandardForm";
+import { User } from "../../../../types/user/user";
 import FormGroup from "../../../form/FormGroup/FormGroup";
 import FormItemFormatted from "../../../form/FormItemFormatted/FormItemFormatted";
 import StandardForm from "../../../form/StandardForm/StandardForm";
@@ -12,7 +13,13 @@ import {
   schema,
 } from "./UpdateProfileForm.schema";
 
-function UpdateProfileForm(): JSX.Element | null {
+type UpdateProfileFormProps = {
+  user: User;
+};
+
+function UpdateProfileForm({
+  user,
+}: UpdateProfileFormProps): JSX.Element | null {
   const api = useApi();
 
   const { t } = useKeyedTranslation(
@@ -22,7 +29,12 @@ function UpdateProfileForm(): JSX.Element | null {
   const { form, mutation, toast } = useStandardForm({
     title: "update-profile-form",
     schema: schema,
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      displayName: user?.profile?.displayName,
+      email: user?.emailAddress,
+      roles: user?.roles?.roles,
+    },
     submitFn: api.users.updateProfile,
   });
 
@@ -34,6 +46,34 @@ function UpdateProfileForm(): JSX.Element | null {
       mutation={mutation}
       toast={toast}
     >
+      <FormGroup>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItemFormatted
+              label={t("email.label")}
+              description={t("email.description")}
+              error={form.formState.errors.email}
+            >
+              <Input disabled placeholder={placeholders.email} {...field} />
+            </FormItemFormatted>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="roles"
+          render={({ field }) => (
+            <FormItemFormatted
+              label={t("roles.label")}
+              description={t("roles.description")}
+              error={form.formState.errors.email}
+            >
+              <div>{field.value}</div>
+            </FormItemFormatted>
+          )}
+        />
+      </FormGroup>
       <FormGroup>
         <FormField
           control={form.control}

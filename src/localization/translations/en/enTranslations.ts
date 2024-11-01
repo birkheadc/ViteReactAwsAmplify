@@ -36,6 +36,16 @@ const enTranslations: ITranslations = {
             description:
               "the name other users will recognize you by. it cannot be `colby`, because that is my name!",
           },
+          email: {
+            label: "email address",
+            description:
+              "your email address is used for logging in. it cannot be changed.",
+          },
+          roles: {
+            label: "roles",
+            description:
+              "the roles you have been assigned. they cannot be changed.",
+          },
         },
       },
       BooksPage: {
@@ -97,18 +107,6 @@ const enTranslations: ITranslations = {
           },
           explanation:
             "Notice that the toast refreshes if you press it before the previous one disappears, rather than a new one stacking up. This is because the buttons use a custom `useRefreshToast` hook, where any toast that shares an ID with a currently visible toast will replace it.The next group of buttons don't use this system, so try them as well!",
-        },
-      },
-      LoginPage: {
-        LoginForm: {
-          title: "Login",
-          description: "Please enter your credentials.",
-          emailAddress: {
-            label: "email address",
-          },
-          password: {
-            label: "password",
-          },
         },
       },
     },

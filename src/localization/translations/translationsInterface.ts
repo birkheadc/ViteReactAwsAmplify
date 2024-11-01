@@ -76,6 +76,14 @@ export default interface ITranslations {
             label: string;
             description: string;
           };
+          email: {
+            label: string;
+            description: string;
+          };
+          roles: {
+            label: string;
+            description: string;
+          };
         };
       };
       ToastPage: {
@@ -109,18 +117,6 @@ export default interface ITranslations {
           title: string;
           author: string;
           pages: string;
-        };
-      };
-      LoginPage: {
-        LoginForm: {
-          title: string;
-          description: string;
-          emailAddress: {
-            label: string;
-          };
-          password: {
-            label: string;
-          };
         };
       };
       FormPage: {

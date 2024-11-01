@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import UpdateProfileForm from "./UpdateProfileForm";
+import { UserRole } from "../../../../types/user/userRole";
 
 const meta: Meta<typeof UpdateProfileForm> = {
   title: "Components/Pages/ProfilePage/UpdateProfileForm",
@@ -11,11 +12,33 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LargeScreen: Story = {
-  args: {},
+  args: {
+    user: {
+      id: "1",
+      emailAddress: "test@test.com",
+      profile: {
+        displayName: "Test User",
+      },
+      roles: {
+        roles: [UserRole.Admin],
+      },
+    },
+  },
 };
 
 export const SmallScreen: Story = {
-  args: {},
+  args: {
+    user: {
+      id: "1",
+      emailAddress: "test@test.com",
+      profile: {
+        displayName: "Test User",
+      },
+      roles: {
+        roles: [UserRole.Admin],
+      },
+    },
+  },
   parameters: {
     viewport: {
       defaultViewport: "mobileVertical",
