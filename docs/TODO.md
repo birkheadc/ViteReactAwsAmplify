@@ -44,3 +44,7 @@
 - Move zod custom error map to a new folder (z) and import it into main.tsx
 
 - The app spams error toasts when logging in automatically and it fails, test with api offline
+
+- Implement RoleInput component
+  - Probably needs some kind of popout, maybe display "Admin +2" etc. if more than 1 role, and have an edit button that opens a modal that shows rest.
+  - If disabled, edit button can still be pressed but should say "see more" intead, and the popout should be readonly
