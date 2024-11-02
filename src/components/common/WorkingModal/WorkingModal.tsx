@@ -1,11 +1,16 @@
 import Modal from "react-modal";
 
-type BasicModalProps = {
+type WorkingModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
+  isCloseable?: boolean;
+  onClose?: () => void;
 };
 
-function BasicModal({ isOpen, children }: BasicModalProps): JSX.Element | null {
+function WorkingModal({
+  isOpen,
+  children,
+}: WorkingModalProps): JSX.Element | null {
   return (
     <Modal isOpen={isOpen}>
       <div className="w-[min(40vw,40vh)] h-[min(40vw,40vh)] rounded-full border-2 border-neutral-50 text-neutral-50 bg-primary-600 flex justify-center items-center text-lg">
@@ -15,4 +20,4 @@ function BasicModal({ isOpen, children }: BasicModalProps): JSX.Element | null {
   );
 }
 
-export default BasicModal;
+export default WorkingModal;

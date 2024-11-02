@@ -3,9 +3,9 @@ import { useApi } from "../../hooks/useApi/useApi";
 import { User } from "../../types/user/user";
 import { UserProfile } from "../../types/user/userProfile";
 import utils from "./MeContext.utils";
-import BasicModal from "../../components/common/BasicModal/BasicModal";
 import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTranslation";
 import React from "react";
+import WorkingModal from "../../components/common/WorkingModal/WorkingModal";
 
 type MeContextProps = {
   children: React.ReactNode;
@@ -72,11 +72,11 @@ export function MeProvider({ children }: MeContextProps) {
   return (
     <MeContext.Provider value={{ user, setUser, updateUserProfile }}>
       {children}
-      <BasicModal isOpen={isLoading}>
+      <WorkingModal isOpen={isLoading}>
         <div>
           <span>{t("loggingIn")}</span>
         </div>
-      </BasicModal>
+      </WorkingModal>
     </MeContext.Provider>
   );
 }

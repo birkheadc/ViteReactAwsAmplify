@@ -3,7 +3,7 @@ import { useApi } from "../../hooks/useApi/useApi";
 
 import { User } from "../../types/user/user";
 import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTranslation";
-import BasicModal from "../../components/common/BasicModal/BasicModal";
+import WorkingModal from "../../components/common/WorkingModal/WorkingModal";
 import { toast } from "react-toastify";
 
 import { useMe } from "../../hooks/useMe/useMe";
@@ -91,11 +91,11 @@ export function SessionProvider({ children }: SessionProviderProps) {
   return (
     <SessionContext.Provider value={{ isLoggedIn, login, logout, user }}>
       {children}
-      <BasicModal isOpen={isPending}>
+      <WorkingModal isOpen={isPending}>
         <div>
           <span>{status && t(status)}</span>
         </div>
-      </BasicModal>
+      </WorkingModal>
     </SessionContext.Provider>
   );
 }

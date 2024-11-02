@@ -119,6 +119,9 @@ const enTranslations: ITranslations = {
       SubmitButton: {
         submit: "submit",
       },
+      RoleInput: {
+        plusNMore: " +{{n}} more",
+      },
       StandardForm: {
         invalid: "There were some problems with the form.",
       },
@@ -160,6 +163,14 @@ const enTranslations: ITranslations = {
     },
     MeContext: {
       loggingIn: "Logging in...",
+    },
+  },
+  types: {
+    user: {
+      UserRole: {
+        0: "Super Admin",
+        1: "Admin",
+      },
     },
   },
 };

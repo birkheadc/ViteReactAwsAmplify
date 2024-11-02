@@ -66,7 +66,6 @@ const zodCustomErrorMap: z.ZodErrorMap = (issue) => {
 
 z.setErrorMap(zodCustomErrorMap);
 
-Modal.setAppElement("#root");
 Modal.defaultStyles = {
   ...Modal.defaultStyles,
   overlay: {
@@ -78,10 +77,11 @@ Modal.defaultStyles = {
     padding: "0px",
     border: "none",
     backgroundColor: "transparent",
+    inset: 0,
+    margin: "auto",
     borderRadius: "0px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    width: "fit-content",
+    height: "fit-content",
   },
 };
 

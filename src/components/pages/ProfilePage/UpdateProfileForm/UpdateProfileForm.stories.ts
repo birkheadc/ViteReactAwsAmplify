@@ -20,7 +20,7 @@ export const LargeScreen: Story = {
         displayName: "Test User",
       },
       roles: {
-        roles: [UserRole.Admin],
+        roles: [UserRole.Admin, UserRole.SuperAdmin],
       },
     },
   },
@@ -35,7 +35,7 @@ export const SmallScreen: Story = {
         displayName: "Test User",
       },
       roles: {
-        roles: [UserRole.Admin],
+        roles: [UserRole.SuperAdmin, UserRole.Admin],
       },
     },
   },

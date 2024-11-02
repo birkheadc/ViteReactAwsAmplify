@@ -7,6 +7,7 @@ function SecondaryButton(props: SecondaryButtonProps): JSX.Element | null {
   return (
     <KeyboardActiveButton
       variant={"secondary"}
+      type="button"
       {...props}
     ></KeyboardActiveButton>
   );

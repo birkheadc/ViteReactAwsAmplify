@@ -4,6 +4,7 @@ import { useStandardForm } from "../../../../hooks/useStandardForm/useStandardFo
 import { User } from "../../../../types/user/user";
 import FormGroup from "../../../form/FormGroup/FormGroup";
 import FormItemFormatted from "../../../form/FormItemFormatted/FormItemFormatted";
+import RoleInput from "../../../form/RoleInput/RoleInput";
 import StandardForm from "../../../form/StandardForm/StandardForm";
 import { FormField } from "../../../ui/form";
 import { Input } from "../../../ui/input";
@@ -67,9 +68,8 @@ function UpdateProfileForm({
             <FormItemFormatted
               label={t("roles.label")}
               description={t("roles.description")}
-              error={form.formState.errors.email}
             >
-              <div>{field.value}</div>
+              <RoleInput roles={field.value} disabled />
             </FormItemFormatted>
           )}
         />

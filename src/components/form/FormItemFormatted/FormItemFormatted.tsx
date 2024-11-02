@@ -6,7 +6,7 @@ type FormItemFormattedProps = {
   label: string;
   description?: string;
   children: React.ReactNode;
-  error: FieldError | undefined;
+  error?: FieldError | undefined;
 };
 
 function FormItemFormatted({
@@ -24,7 +24,7 @@ function FormItemFormatted({
             <FormItemDescription>{description}</FormItemDescription>
           )}
         </div>
-        {children}
+        <div className="lg:w-[12rem]">{children}</div>
       </div>
       <FormFieldError error={error} />
     </FormItem>

@@ -15,6 +15,9 @@ export default interface ITranslations {
   };
   components: {
     form: {
+      RoleInput: {
+        plusNMore: string;
+      };
       errorCode: {
         loginFailed: string;
         registrationFailed: string;
@@ -145,6 +148,14 @@ export default interface ITranslations {
     common: {
       NoMoreData: {
         noMoreData: string;
+      };
+    };
+  };
+  types: {
+    user: {
+      UserRole: {
+        0: string;
+        1: string;
       };
     };
   };
