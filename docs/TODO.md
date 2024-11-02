@@ -48,3 +48,5 @@
 - Implement RoleInput component
   - Probably needs some kind of popout, maybe display "Admin +2" etc. if more than 1 role, and have an edit button that opens a modal that shows rest.
   - If disabled, edit button can still be pressed but should say "see more" intead, and the popout should be readonly
+
+- Need to fix auto login to fail immediately and remove prevSession if 401

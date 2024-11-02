@@ -2,10 +2,6 @@ import * as React from "react";
 
 import { User } from "../../types/user/user";
 
-export type SessionProviderProps = {
-  children: React.ReactNode;
-};
-
 type SessionContextState = {
   isLoggedIn: boolean;
   login: (code: string) => Promise<void>;

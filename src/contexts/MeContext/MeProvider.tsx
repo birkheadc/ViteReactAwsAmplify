@@ -31,8 +31,9 @@ export function MeProvider({ children }: MeContextProps) {
 
   const setUser = (user: User | undefined) => {
     if (!user) {
-      setPreviousSession(false);
       utils.removePreviousSessionKeyFromLocalStorage();
+      setPreviousSession(false);
+      // TODO The query fires again immediately.. it should not.
       queryClient.resetQueries({ queryKey: ["me"] });
     } else {
       utils.setPreviousSessionKeyInLocalStorage("true");
