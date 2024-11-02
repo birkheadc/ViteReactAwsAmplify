@@ -1,3 +1,5 @@
+import { UserRole } from "../../types/user/userRole";
+
 export default interface ITranslations {
   contexts: {
     SessionContext: {
@@ -17,6 +19,10 @@ export default interface ITranslations {
     form: {
       RoleInput: {
         plusNMore: string;
+        RoleInputModal: {
+          cancel: string;
+          save: string;
+        };
       };
       errorCode: {
         loginFailed: string;
@@ -154,8 +160,10 @@ export default interface ITranslations {
   types: {
     user: {
       UserRole: {
-        0: string;
-        1: string;
+        [key in UserRole]: {
+          name: string;
+          description: string;
+        };
       };
     };
   };

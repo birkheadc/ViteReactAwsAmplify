@@ -14,7 +14,6 @@ import withQueryProvider from "./withQueryProvider";
 import withApiProvider from "./withApiProvider";
 import withToast from "./withToast";
 import mockApi from "./mockApi";
-import { ThemeProvider } from "../src/contexts/ThemeContext/ThemeContext";
 import withModal from "./withModal";
 
 const preview: Preview = {

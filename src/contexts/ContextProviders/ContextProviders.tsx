@@ -1,10 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import api from "../../api";
-import { ApiProvider } from "../ApiContext/ApiContext";
-import { ThemeProvider } from "../ThemeContext/ThemeContext";
+import { ApiProvider } from "../ApiContext/ApiProvider";
+import { ThemeProvider } from "../ThemeContext/ThemeProvider";
 import Toast from "../../components/toast/Toast/Toast";
-import { SessionProvider } from "../SessionContext/SessionContext";
-import { MeProvider } from "../MeContext/MeContext";
+import { SessionProvider } from "../SessionContext/SessionProvider";
+import { MeProvider } from "../MeContext/MeProvider";
 
 type ContextProvidersProps = {
   children?: React.ReactNode;

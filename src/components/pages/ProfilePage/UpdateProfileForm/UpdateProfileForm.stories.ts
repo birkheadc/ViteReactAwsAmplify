@@ -11,33 +11,26 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const user = {
+  id: "1",
+  emailAddress: "test@test.com",
+  profile: {
+    displayName: "Test User",
+  },
+  roles: {
+    roles: [UserRole.SuperAdmin],
+  },
+};
+
 export const LargeScreen: Story = {
   args: {
-    user: {
-      id: "1",
-      emailAddress: "test@test.com",
-      profile: {
-        displayName: "Test User",
-      },
-      roles: {
-        roles: [UserRole.Admin, UserRole.SuperAdmin],
-      },
-    },
+    user: user,
   },
 };
 
 export const SmallScreen: Story = {
   args: {
-    user: {
-      id: "1",
-      emailAddress: "test@test.com",
-      profile: {
-        displayName: "Test User",
-      },
-      roles: {
-        roles: [UserRole.SuperAdmin, UserRole.Admin],
-      },
-    },
+    user: user,
   },
   parameters: {
     viewport: {

@@ -38,7 +38,7 @@ function StandardForm<TSchema extends FieldValues>({
   return (
     <Form {...form}>
       <form
-        className="flex flex-col max-w-3xl gap-4 m-auto min-w-fit"
+        className="flex flex-col max-w-3xl gap-4 m-auto min-w-fit p-2"
         onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         title={title}
       >

@@ -121,6 +121,10 @@ const enTranslations: ITranslations = {
       },
       RoleInput: {
         plusNMore: " +{{n}} more",
+        RoleInputModal: {
+          cancel: "cancel",
+          save: "save",
+        },
       },
       StandardForm: {
         invalid: "There were some problems with the form.",
@@ -168,8 +172,15 @@ const enTranslations: ITranslations = {
   types: {
     user: {
       UserRole: {
-        0: "Super Admin",
-        1: "Admin",
+        0: {
+          name: "Super Admin",
+          description:
+            "Allows the user to perform all actions. Cannot be added or removed.",
+        },
+        1: {
+          name: "Admin",
+          description: "Allows the user to perform most actions.",
+        },
       },
     },
   },

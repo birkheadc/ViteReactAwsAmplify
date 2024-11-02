@@ -10,11 +10,14 @@
     color: theme(colors.neutral.50);
   }
   * {
-    transition: border-color 300ms, color 300ms, background-color 300ms;
+    transition:
+      border-color 300ms,
+      color 300ms,
+      background-color 300ms;
   }
   *:focus {
-    outline: none
-  } 
+    outline: none;
+  }
 }
 @tailwind components;
 @tailwind utilities;

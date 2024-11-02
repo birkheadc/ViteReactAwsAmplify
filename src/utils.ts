@@ -32,7 +32,7 @@ const extractAccessToken = (data: unknown): AccessToken | null => {
 };
 
 const convertServerSideErrorToTranslatedErrorMessage = (
-  error: object,
+  error: object
 ): string => {
   const t = i18n.t;
   if (!("errorCode" in error))
@@ -166,10 +166,19 @@ const apiFetch = async <T>({
   }
 };
 
+const blurActiveElement = () => {
+  try {
+    (document.activeElement as HTMLElement).blur();
+  } catch {
+    // do nothing
+  }
+};
+
 // Exporting all utils together makes them easier to mock
 export default {
   extractAccessToken,
   convertServerSideErrorToTranslatedErrorMessage,
   apiSubmit,
   apiFetch,
+  blurActiveElement,
 };

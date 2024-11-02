@@ -15,7 +15,7 @@ const buttonVariants = cva(
         outline:
           "border border-neutral-200 bg-white hocus:bg-neutral-100 hocus:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hocus:bg-neutral-800 dark:hocus:text-neutral-50",
         secondary:
-          "border-primary-700 border-2 text-primary-700 dark:border-primary-300 dark:text-primary-300 hocus:border-secondary-500 dark:hocus:border-secondary-500 hocus:text-secondary-500 dark:hocus:text-secondary-500 hocus:bg-secondary-200 dark:hocus:bg-secondary-700",
+          "border-2 border-primary-700 text-primary-700 dark:border-primary-300 dark:text-primary-300 hocus:border-secondary-600 dark:hocus:border-secondary-200 hocus:text-secondary-600 dark:hocus:text-secondary-200 hocus:bg-secondary-50 dark:hocus:bg-secondary-900",
         ghost:
           "hocus:bg-neutral-100 hocus:text-neutral-900 dark:hocus:bg-neutral-800 dark:hocus:text-neutral-50",
         link: "text-neutral-900 underline-offset-4 hocus:underline dark:text-neutral-50",
@@ -31,7 +31,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface ButtonProps
@@ -50,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       />
     );
-  }
+  },
 );
 Button.displayName = "Button";
 
