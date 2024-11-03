@@ -33,20 +33,12 @@
 
 - Update npm packages
 
-- There is some weirdness going on in development when going back to pages already loaded in booksdisplay
-
-- Create some kind of overlay when logging in
-
 - Create some kind of system for forcing a user to update their data when it is incomplete (display name must be chosen, etc)
 
   - Modal or reroute to profile page form? Hmm...
 
-- Move zod custom error map to a new folder (z) and import it into main.tsx
+- Fix table columns misalignment, right align numbers
 
-- The app spams error toasts when logging in automatically and it fails, test with api offline
+- In development, get a 404 for some reason on first page load...
 
-- Implement RoleInput component
-  - Probably needs some kind of popout, maybe display "Admin +2" etc. if more than 1 role, and have an edit button that opens a modal that shows rest.
-  - If disabled, edit button can still be pressed but should say "see more" intead, and the popout should be readonly
-
-- Need to fix auto login to fail immediately and remove prevSession if 401
+- Create book form needs a cancel button, and needs to close itself on success
