@@ -19,15 +19,15 @@ function LabeledCheckbox({
   disabled,
 }: LabeledCheckboxProps) {
   const handleCheckChange = (value: boolean) => {
+    if (disabled) return;
     utils.blurActiveElement();
     onCheckedChange(value);
   };
   return (
-    <button
+    <div
       onClick={() => handleCheckChange(!checked)}
-      disabled={disabled}
       className={cn(
-        "border-2 hocus:bg-secondary-50 p-2 px-4 rounded-lg",
+        "border-2 hocus:bg-secondary-50 p-2 px-4 rounded-lg cursor-pointer",
         checked
           ? "border-primary-500 dark:border-primary-700 bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300"
           : "border-transparent-full bg-neutral-50 dark:bg-neutral-950 text-neutral-600 dark:text-neutral-400",
@@ -46,7 +46,7 @@ function LabeledCheckbox({
       {description && (
         <p className="text-sm w-80 max-w-full text-left">{description}</p>
       )}
-    </button>
+    </div>
   );
 }
 

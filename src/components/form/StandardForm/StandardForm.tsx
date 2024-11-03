@@ -7,6 +7,7 @@ import FormTitle from "../FormTitle/FormTitle";
 import FormDescription from "../FormDescription/FormDescription";
 import { UseMutationResult } from "@tanstack/react-query";
 import { ApiError } from "../../../types/apiResult/apiError";
+import { cn } from "../../../utils";
 
 type StandardFormProps<TSchema extends FieldValues> = {
   title?: string;
@@ -15,6 +16,7 @@ type StandardFormProps<TSchema extends FieldValues> = {
   mutation: UseMutationResult<void, ApiError, TSchema>;
   children?: React.ReactNode;
   toast: UseRefreshToastReturn;
+  className?: string;
 };
 
 function StandardForm<TSchema extends FieldValues>({
@@ -24,6 +26,7 @@ function StandardForm<TSchema extends FieldValues>({
   description,
   mutation,
   toast,
+  className,
 }: StandardFormProps<TSchema>): JSX.Element | null {
   const { t } = useKeyedTranslation("components.form.StandardForm");
 
@@ -38,7 +41,10 @@ function StandardForm<TSchema extends FieldValues>({
   return (
     <Form {...form}>
       <form
-        className="flex flex-col max-w-3xl gap-4 m-auto min-w-fit p-2"
+        className={cn(
+          "flex flex-col max-w-3xl gap-4 m-auto min-w-fit p-2",
+          className,
+        )}
         onSubmit={form.handleSubmit(onSubmit, onInvalid)}
         title={title}
       >

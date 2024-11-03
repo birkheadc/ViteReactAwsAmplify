@@ -1,7 +1,7 @@
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
+import { useMe } from "../../../../hooks/useMe/useMe";
 import { useStandardForm } from "../../../../hooks/useStandardForm/useStandardForm";
-import { User } from "../../../../types/user/user";
 import FormGroup from "../../../form/FormGroup/FormGroup";
 import FormItemFormatted from "../../../form/FormItemFormatted/FormItemFormatted";
 import RoleInput from "../../../form/RoleInput/RoleInput";
@@ -14,14 +14,10 @@ import {
   schema,
 } from "./UpdateProfileForm.schema";
 
-type UpdateProfileFormProps = {
-  user: User;
-};
-
-function UpdateProfileForm({
-  user,
-}: UpdateProfileFormProps): JSX.Element | null {
+function UpdateProfileForm(): JSX.Element | null {
   const api = useApi();
+
+  const { user } = useMe();
 
   const { t } = useKeyedTranslation(
     "components.pages.ProfilePage.UpdateProfileForm",

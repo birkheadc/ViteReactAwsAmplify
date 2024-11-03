@@ -53,6 +53,39 @@ const enTranslations: ITranslations = {
           title: "title",
           author: "author",
           pages: "pages",
+          BookTableRow: {
+            DeleteBookButton: {
+              ConfirmDeleteBookModal: {
+                message: "Are you sure you want to delete this book?",
+                cancelButtonText: "cancel",
+                confirmButtonText: "delete",
+              },
+            },
+          },
+        },
+        CreateBookWidget: {
+          createBook: "create new book",
+        },
+        BookForm: {
+          title: "book form",
+          description: {
+            create: "create a new book",
+            edit: "edit a book",
+          },
+          fields: {
+            title: {
+              label: "title",
+              description: "the title of the book",
+            },
+            author: {
+              label: "author",
+              description: "the author of the book",
+            },
+            pages: {
+              label: "pages",
+              description: "the number of pages in the book",
+            },
+          },
         },
       },
       FormPage: {
@@ -120,7 +153,10 @@ const enTranslations: ITranslations = {
         submit: "submit",
       },
       RoleInput: {
-        plusNMore: " +{{n}} more",
+        RoleInputButton: {
+          noRoles: "no special roles",
+          plusNMore: " +{{n}} more",
+        },
         RoleInputModal: {
           cancel: "cancel",
           save: "save",
@@ -130,8 +166,6 @@ const enTranslations: ITranslations = {
         invalid: "There were some problems with the form.",
       },
       validationErrors: {
-        min: "Must be at least {{n}} characters.",
-        max: "Must be at most {{n}} characters.",
         passwordMatch: "Password does not match.",
         unexpected: "An unexpected error occurred: {{e}}",
         equal: "Must be '{{v}}'.",
@@ -143,6 +177,30 @@ const enTranslations: ITranslations = {
         needsNumber: "Must contain a number.",
         needsSymbol:
           "Must contain one of the following symbols: ^ $ * . [ ] { } ( ) ? - \" ! @ # % & / \\ , > < ' : ; | _ ~ ` + = ",
+        invalid_type: {
+          number: "Must be a number.",
+          integer: "Must be a whole number.",
+        },
+        too_small: {
+          number: {
+            inclusive: "Must be at least {{n}}.",
+            exclusive: "Must be greater than {{n}}.",
+          },
+          string: {
+            inclusive: "Must be at least {{n}} characters.",
+            exclusive: "Must be longer than {{n}} characters.",
+          },
+        },
+        too_big: {
+          number: {
+            inclusive: "Must be at most {{n}}.",
+            exclusive: "Must be less than {{n}}.",
+          },
+          string: {
+            inclusive: "Must be at most {{n}} characters.",
+            exclusive: "Must be shorter than {{n}} characters.",
+          },
+        },
       },
       status: {
         400: "There were one or more problems with your request.",

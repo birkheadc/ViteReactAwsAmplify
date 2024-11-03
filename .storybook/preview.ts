@@ -5,16 +5,18 @@ import {
   reactRouterParameters,
   withRouter,
 } from "storybook-addon-remix-react-router";
-import withI18next from "./withI18next";
+import withI18next from "./decorators/withI18next";
 
 import { CUSTOM_VIEWPORTS } from "./customViewports";
 
 import "../src/styles/main.css";
-import withQueryProvider from "./withQueryProvider";
-import withApiProvider from "./withApiProvider";
-import withToast from "./withToast";
+import withQueryProvider from "./decorators/withQueryProvider";
+import withApiProvider from "./decorators/withApiProvider";
+import withToast from "./decorators/withToast";
 import mockApi from "./mockApi";
-import withModal from "./withModal";
+import withModal from "./decorators/withModal";
+import withCustomZodErrorMap from "./decorators/withCustomZodErrorMap";
+import withUser from "./decorators/withUser";
 
 const preview: Preview = {
   parameters: {
@@ -42,6 +44,7 @@ const preview: Preview = {
     withI18next,
     withRouter,
     withQueryProvider,
+    withCustomZodErrorMap,
     withThemeByClassName<ReactRenderer>({
       themes: {
         light: "light",
@@ -50,6 +53,7 @@ const preview: Preview = {
       defaultTheme: "light",
     }),
     withToast,
+    withUser,
   ],
 };
 

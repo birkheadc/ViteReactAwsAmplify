@@ -44,6 +44,7 @@ function RoleInputModal({
         <div className="flex flex-col gap-2">
           {rolesToShow.map((key) => (
             <RoleCheckbox
+              key={key}
               role={key}
               checked={roles.includes(key)}
               disabled={disabled}

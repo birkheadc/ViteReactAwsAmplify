@@ -1,5 +1,5 @@
 type FormGroupProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 function FormGroup({ children }: FormGroupProps): JSX.Element | null {

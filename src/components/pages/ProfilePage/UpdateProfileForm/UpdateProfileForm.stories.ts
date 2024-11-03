@@ -23,16 +23,14 @@ const user = {
 };
 
 export const LargeScreen: Story = {
-  args: {
+  parameters: {
     user: user,
   },
 };
 
 export const SmallScreen: Story = {
-  args: {
-    user: user,
-  },
   parameters: {
+    user: user,
     viewport: {
       defaultViewport: "mobileVertical",
     },

@@ -1,4 +1,4 @@
-import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { UseMutationResult } from "@tanstack/react-query";
 import {
   DefaultValues,
   FieldValues,
@@ -13,7 +13,7 @@ import {
 import { z } from "zod";
 import { ApiError } from "../../types/apiResult/apiError";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useKeyedTranslation } from "../useKeyedTranslation/useKeyedTranslation";
+import { useToastMutation } from "../useToastMutation/useToastMutation";
 
 export type UseStandardFormReturn<TSchema extends FieldValues> = {
   form: UseFormReturn<TSchema>;
@@ -27,17 +27,21 @@ export type UseStandardFormOptions<TSchema extends FieldValues> = {
   defaultValues: DefaultValues<TSchema>;
   submitFn: (data: TSchema) => Promise<void>;
   successMessage?: string;
+  successCallback?: () => void;
 };
 
+/**
+ * To be used with the <StandardForm> component for creating standardized forms.
+ * Handles errors, submission, and success toast notifications.
+ */
 export function useStandardForm<TSchema extends FieldValues>({
   title,
   schema,
   defaultValues,
   submitFn,
   successMessage,
+  successCallback,
 }: UseStandardFormOptions<TSchema>): UseStandardFormReturn<TSchema> {
-  const { t } = useKeyedTranslation("components.form");
-
   const toast = useRefreshToast(title);
 
   const form = useForm<TSchema>({
@@ -50,12 +54,7 @@ export function useStandardForm<TSchema extends FieldValues>({
     await submitFn(data);
   };
 
-  const onError = (error: ApiError) => {
-    if (error.errorCode) {
-      toast(t(`errorCode.${error.errorCode}`), "error");
-    } else {
-      toast(t(`status.${error.status}`), "error");
-    }
+  const errorCallback = (error: ApiError) => {
     for (const key of Object.keys(defaultValues)) {
       if (error.validationErrors[key]) {
         form.setError(key as Path<TSchema>, {
@@ -65,14 +64,12 @@ export function useStandardForm<TSchema extends FieldValues>({
     }
   };
 
-  const onSuccess = () => {
-    toast(successMessage ?? "success", "success");
-  };
-
-  const mutation = useMutation<void, ApiError, TSchema>({
-    mutationFn,
-    onError,
-    onSuccess,
+  const mutation = useToastMutation<TSchema>({
+    toastId: title,
+    fn: mutationFn,
+    successCallback,
+    errorCallback,
+    successMessage,
   });
 
   return {

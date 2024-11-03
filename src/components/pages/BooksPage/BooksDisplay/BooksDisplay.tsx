@@ -32,6 +32,7 @@ function BooksDisplay(): JSX.Element | null {
             <TableHead>{t("title")}</TableHead>
             <TableHead>{t("author")}</TableHead>
             <TableHead>{t("pages")}</TableHead>
+            <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

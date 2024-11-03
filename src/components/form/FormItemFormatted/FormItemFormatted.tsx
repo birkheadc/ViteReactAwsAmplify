@@ -17,7 +17,7 @@ function FormItemFormatted({
 }: FormItemFormattedProps): JSX.Element | null {
   return (
     <FormItem>
-      <div className="flex flex-col justify-between w-full gap-2 md:flex-row md:items-center">
+      <div className="flex flex-col justify-between w-full gap-16 gap-y-2 md:flex-row md:items-center">
         <div className="flex flex-col">
           <FormLabel>{label}</FormLabel>
           {description && (

@@ -18,7 +18,10 @@ export default interface ITranslations {
   components: {
     form: {
       RoleInput: {
-        plusNMore: string;
+        RoleInputButton: {
+          noRoles: string;
+          plusNMore: string;
+        };
         RoleInputModal: {
           cancel: string;
           save: string;
@@ -32,8 +35,6 @@ export default interface ITranslations {
         "400": string;
       };
       validationErrors: {
-        min: string;
-        max: string;
         passwordMatch: string;
         unexpected: string;
         equal: string;
@@ -44,6 +45,30 @@ export default interface ITranslations {
         needsLowercase: string;
         needsNumber: string;
         needsSymbol: string;
+        invalid_type: {
+          number: string;
+          integer: string;
+        };
+        too_small: {
+          number: {
+            inclusive: string;
+            exclusive: string;
+          };
+          string: {
+            inclusive: string;
+            exclusive: string;
+          };
+        };
+        too_big: {
+          number: {
+            inclusive: string;
+            exclusive: string;
+          };
+          string: {
+            inclusive: string;
+            exclusive: string;
+          };
+        };
       };
       SubmitButton: {
         submit: string;
@@ -126,6 +151,39 @@ export default interface ITranslations {
           title: string;
           author: string;
           pages: string;
+          BookTableRow: {
+            DeleteBookButton: {
+              ConfirmDeleteBookModal: {
+                message: string;
+                cancelButtonText: string;
+                confirmButtonText: string;
+              };
+            };
+          };
+        };
+        CreateBookWidget: {
+          createBook: string;
+        };
+        BookForm: {
+          title: string;
+          description: {
+            create: string;
+            edit: string;
+          };
+          fields: {
+            title: {
+              label: string;
+              description: string;
+            };
+            author: {
+              label: string;
+              description: string;
+            };
+            pages: {
+              label: string;
+              description: string;
+            };
+          };
         };
       };
       FormPage: {

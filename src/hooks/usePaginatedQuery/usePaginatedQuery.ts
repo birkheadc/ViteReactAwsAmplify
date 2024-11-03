@@ -31,21 +31,23 @@ export function usePaginatedQuery<T>({
 
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
-  const { data, isError, isFetching, isFetched, isLoading } = useQuery<
-    Paginated<T>
-  >({
+  const { data, isError, isFetched, isLoading } = useQuery<Paginated<T>>({
     queryKey: [queryKey, paginationTokens.at(-1)],
     queryFn: () => queryFn(paginationTokens.at(-1)),
     placeholderData: keepPreviousData,
   });
 
   const goToFirstPage = () => {
-    if (isFetching) return;
+    if (!isFetched) {
+      return;
+    }
     setPaginationTokens([]);
   };
 
   const goToPrevPage = () => {
-    if (isFetching) return;
+    if (!isFetched) {
+      return;
+    }
     setPaginationTokens((tokens) => {
       if (tokens.length < 1) {
         return tokens;
@@ -57,7 +59,9 @@ export function usePaginatedQuery<T>({
   };
 
   const goToNextPage = () => {
-    if (isFetching) return;
+    if (!isFetched) {
+      return;
+    }
     setPaginationTokens((tokens) => {
       if (!data?.paginationToken) {
         return tokens;
@@ -74,7 +78,7 @@ export function usePaginatedQuery<T>({
 
       setCurrentPage(paginationTokens.length + 1);
     },
-    [isFetched, paginationTokens],
+    [isFetched, paginationTokens]
   );
 
   return {

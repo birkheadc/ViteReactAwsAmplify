@@ -1,8 +1,8 @@
 import React from "react";
-import Toast from "../src/components/toast/Toast/Toast";
+import Toast from "../../src/components/toast/Toast/Toast";
 
 import "react-toastify/dist/ReactToastify.css";
-import { ThemeProvider } from "../src/contexts/ThemeContext/ThemeContext";
+import { ThemeProvider } from "../../src/contexts/ThemeContext/ThemeProvider";
 
 const withToast = (Story: any) => {
   return (

@@ -7,6 +7,8 @@ import { useKeyedTranslation } from "../../hooks/useKeyedTranslation/useKeyedTra
 import React from "react";
 import WorkingModal from "../../components/common/WorkingModal/WorkingModal";
 import { MeContext } from "./MeContext";
+import { UserPermission } from "../../types/user/userPermission";
+import { RolePermission } from "../../types/user/rolePermission";
 
 type MeContextProps = {
   children: React.ReactNode;
@@ -66,8 +68,13 @@ export function MeProvider({ children }: MeContextProps) {
     // then use setUser to update the user profile locally
   };
 
+  const canI = (permission: UserPermission): boolean => {
+    if (user == null) return false;
+    return RolePermission.doesRolesHavePermission(user.roles.roles, permission);
+  };
+
   return (
-    <MeContext.Provider value={{ user, setUser, updateUserProfile }}>
+    <MeContext.Provider value={{ user, canI, setUser, updateUserProfile }}>
       {children}
       <WorkingModal isOpen={isLoading}>
         <div>
