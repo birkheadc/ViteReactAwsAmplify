@@ -31,6 +31,61 @@ const extractAccessToken = (data: unknown): AccessToken | null => {
   return AccessToken;
 };
 
+const extractStatusCode = (json: unknown): number => {
+  if (!json) return 422;
+  if (typeof json !== "object") return 422;
+  if ("status" in json && typeof json.status === "number") return json.status;
+  if ("statusCode" in json && typeof json.statusCode === "number")
+    return json.statusCode;
+
+  return 422;
+};
+
+const extractErrorCode = (json: unknown): string | undefined => {
+  if (!json) return undefined;
+  if (typeof json !== "object") return undefined;
+  if (!("errorCode" in json)) return undefined;
+  if (typeof json.errorCode !== "string") return undefined;
+
+  return json.errorCode;
+};
+
+const extractValidationErrors = (json: unknown): Record<string, string> => {
+  if (!json) return {};
+  if (typeof json !== "object") return {};
+  if (!("problemDetails" in json)) return {};
+
+  const problemDetails = json.problemDetails;
+
+  if (!problemDetails) return {};
+  if (typeof problemDetails !== "object") return {};
+  if (!("errors" in problemDetails)) return {};
+
+  const errors = problemDetails.errors;
+
+  if (!errors) return {};
+  if (!Array.isArray(errors)) return {};
+
+  const validationErrors: Record<string, string> = {};
+
+  for (const error of errors) {
+    if (!error) continue;
+    if (typeof error !== "object") continue;
+
+    if (!error.propertyName || typeof error.propertyName !== "string") continue;
+
+    let propertyName: string = error.propertyName;
+    propertyName = propertyName[0]
+      .toLowerCase()
+      .concat(propertyName.substring(1));
+
+    validationErrors[propertyName] =
+      convertServerSideErrorToTranslatedErrorMessage(error);
+  }
+
+  return validationErrors;
+};
+
 const convertServerSideErrorToTranslatedErrorMessage = (
   error: object
 ): string => {
@@ -152,7 +207,7 @@ const apiFetch = async <T>({
   try {
     json = await response.json();
   } catch (error) {
-    throw ApiError.UNEXPECTED_FORMAT;
+    throw ApiError.withStatus(response.status);
   }
 
   if (!response.ok) {
@@ -161,7 +216,7 @@ const apiFetch = async <T>({
 
   try {
     return await builder(json);
-  } catch (error) {
+  } catch {
     throw ApiError.UNEXPECTED_FORMAT;
   }
 };
@@ -177,8 +232,11 @@ const blurActiveElement = () => {
 // Exporting all utils together makes them easier to mock
 export default {
   extractAccessToken,
+  extractErrorCode,
   convertServerSideErrorToTranslatedErrorMessage,
   apiSubmit,
   apiFetch,
   blurActiveElement,
+  extractValidationErrors,
+  extractStatusCode,
 };

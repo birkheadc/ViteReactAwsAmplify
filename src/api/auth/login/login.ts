@@ -3,7 +3,6 @@ import { User } from "../../../types/user/user";
 import utils from "../../../utils";
 
 const login = async (code: string | undefined): Promise<User> => {
-  console.log("login", code);
   if (code == null) {
     throw ApiError.LOGIN_FAILED;
   }

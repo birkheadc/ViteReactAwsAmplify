@@ -59,7 +59,6 @@ export function SessionProvider({ children }: SessionProviderProps) {
       return;
     }
     setStatus("loggingOut");
-
     await api.auth.logout();
 
     toast(t("logoutSucceeded"), { type: "success" });

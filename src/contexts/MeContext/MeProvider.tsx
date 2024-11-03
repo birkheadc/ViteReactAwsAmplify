@@ -27,14 +27,20 @@ export function MeProvider({ children }: MeContextProps) {
     queryKey: ["me"],
     queryFn: () => api.users.getMe(),
     enabled: isPreviousSession,
+    retry: (failureCount, error) => {
+      if ("status" in error && error.status === 401) {
+        utils.removePreviousSessionKeyFromLocalStorage();
+        setPreviousSession(false);
+        return false;
+      }
+      return failureCount < 3;
+    },
   });
 
   const setUser = (user: User | undefined) => {
     if (!user) {
       utils.removePreviousSessionKeyFromLocalStorage();
       setPreviousSession(false);
-      // TODO The query fires again immediately.. it should not.
-      queryClient.resetQueries({ queryKey: ["me"] });
     } else {
       utils.setPreviousSessionKeyInLocalStorage("true");
       setPreviousSession(true);
@@ -42,16 +48,23 @@ export function MeProvider({ children }: MeContextProps) {
     }
   };
 
+  // This has to be a useEffect because if we try to setPreviousSession to false and resetQueries
+  // at the same time, the query will fire again immediately.
+  React.useEffect(
+    function resetMeWhenNoSession() {
+      if (!isPreviousSession) {
+        queryClient.resetQueries({ queryKey: ["me"] });
+      }
+    },
+    [isPreviousSession, queryClient],
+  );
+
   const updateUserProfile = async (userProfile: UserProfile) => {
     console.log("updateUserProfile", userProfile);
     // TODO: Implement
     // Use a mutation to update user profile on the server
     // then use setUser to update the user profile locally
   };
-
-  React.useEffect(() => {
-    console.log("user", user);
-  }, [user]);
 
   return (
     <MeContext.Provider value={{ user, setUser, updateUserProfile }}>
