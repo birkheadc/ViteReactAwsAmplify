@@ -25,7 +25,7 @@ function ConfirmDeleteBookModal({
     onClose();
   };
 
-  const { mutate, isPending } = useToastMutation({
+  const { mutate, isPending } = useToastMutation<void>({
     toastId: "confirm-delete-book-modal",
     fn: () => api.books.deleteBook(book.id),
     successCallback: onSuccess,
