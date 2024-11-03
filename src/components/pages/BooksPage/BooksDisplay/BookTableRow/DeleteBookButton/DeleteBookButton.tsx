@@ -4,13 +4,18 @@ import { Trash } from "lucide-react";
 import SecondaryButton from "../../../../../common/SecondaryButton/SecondaryButton";
 import React from "react";
 import ConfirmDeleteBookModal from "./ConfirmDeleteBookModal/ConfirmDeleteBookModal";
+import { useMe } from "../../../../../../hooks/useMe/useMe";
+import { UserPermission } from "../../../../../../types/user/userPermission";
 
 type DeleteBookButtonProps = {
   book: Book;
 };
 
-function DeleteBookButton({ book }: DeleteBookButtonProps): JSX.Element {
+function DeleteBookButton({ book }: DeleteBookButtonProps): JSX.Element | null {
+  const { canI } = useMe();
   const [isOpen, setOpen] = React.useState<boolean>(false);
+
+  if (!canI(UserPermission.ModifyBooks)) return null;
 
   return (
     <>
