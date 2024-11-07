@@ -9,6 +9,8 @@ type CloseableModalProps = {
 };
 
 function CloseableModal({ isOpen, onClose, children }: CloseableModalProps) {
+  if (!isOpen) return null;
+
   return (
     <Modal
       isOpen={isOpen}
