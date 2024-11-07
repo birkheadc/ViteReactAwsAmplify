@@ -23,7 +23,7 @@ function EditBookModal({
 
   return (
     <CloseableModal isOpen={isOpen} onClose={onClose}>
-      <BookForm book={book} successCallback={onSuccess} />
+      <BookForm book={book} successCallback={onSuccess} onCancel={onClose} />
     </CloseableModal>
   );
 }

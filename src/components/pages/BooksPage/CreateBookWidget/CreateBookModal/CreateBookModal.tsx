@@ -12,7 +12,7 @@ export default function CreateBookModal({
 }: CreateBookModalProps): JSX.Element {
   return (
     <CloseableModal isOpen={isOpen} onClose={onClose}>
-      <BookForm />
+      <BookForm successCallback={onClose} onCancel={onClose} />
     </CloseableModal>
   );
 }

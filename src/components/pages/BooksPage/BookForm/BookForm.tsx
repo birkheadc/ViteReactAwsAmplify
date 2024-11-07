@@ -12,6 +12,7 @@ import { FormField } from "../../../ui/form";
 type BookFormProps = {
   book?: Book;
   successCallback?: () => void;
+  onCancel?: () => void;
 };
 
 /**
@@ -21,6 +22,7 @@ type BookFormProps = {
 export default function BookForm({
   book,
   successCallback,
+  onCancel,
 }: BookFormProps): JSX.Element {
   const api = useApi();
 
@@ -41,6 +43,7 @@ export default function BookForm({
       form={form}
       mutation={mutation}
       toast={toast}
+      onCancel={onCancel}
     >
       <FormGroup>
         <FormField

@@ -8,6 +8,7 @@ import FormDescription from "../FormDescription/FormDescription";
 import { UseMutationResult } from "@tanstack/react-query";
 import { ApiError } from "../../../types/apiResult/apiError";
 import { cn } from "../../../utils";
+import SecondaryButton from "../../common/SecondaryButton/SecondaryButton";
 
 type StandardFormProps<TSchema extends FieldValues> = {
   title?: string;
@@ -17,6 +18,7 @@ type StandardFormProps<TSchema extends FieldValues> = {
   children?: React.ReactNode;
   toast: UseRefreshToastReturn;
   className?: string;
+  onCancel?: () => void;
 };
 
 function StandardForm<TSchema extends FieldValues>({
@@ -27,6 +29,7 @@ function StandardForm<TSchema extends FieldValues>({
   mutation,
   toast,
   className,
+  onCancel,
 }: StandardFormProps<TSchema>): JSX.Element | null {
   const { t } = useKeyedTranslation("components.form.StandardForm");
 
@@ -51,7 +54,10 @@ function StandardForm<TSchema extends FieldValues>({
         <FormTitle title={title} />
         <FormDescription description={description} />
         {children}
-        <div className="flex justify-end w-full">
+        <div className="flex justify-end w-full gap-4">
+          {onCancel && (
+            <SecondaryButton onClick={onCancel}>{t("cancel")}</SecondaryButton>
+          )}
           <SubmitButton isWorking={mutation.isPending} />
         </div>
       </form>

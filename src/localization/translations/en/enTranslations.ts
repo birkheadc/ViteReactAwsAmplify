@@ -164,6 +164,7 @@ const enTranslations: ITranslations = {
       },
       StandardForm: {
         invalid: "There were some problems with the form.",
+        cancel: "cancel",
       },
       validationErrors: {
         passwordMatch: "Password does not match.",

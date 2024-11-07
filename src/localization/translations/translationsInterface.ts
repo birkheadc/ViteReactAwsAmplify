@@ -75,6 +75,7 @@ export default interface ITranslations {
       };
       StandardForm: {
         invalid: string;
+        cancel: string;
       };
     };
     nav: {
