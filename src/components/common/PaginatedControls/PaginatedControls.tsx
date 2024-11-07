@@ -4,6 +4,7 @@ import {
   ArrowRightIcon,
 } from "lucide-react";
 import SecondaryButton from "../SecondaryButton/SecondaryButton";
+import { useKeyedTranslation } from "../../../hooks/useKeyedTranslation/useKeyedTranslation";
 
 export type PaginatedControlsProps = {
   currentPage: number;
@@ -22,12 +23,14 @@ function PaginatedControls({
   canGoToPrev,
   canGoToNext,
 }: PaginatedControlsProps): JSX.Element | null {
+  const { t } = useKeyedTranslation("components.common.PaginatedControls");
+
   return (
     <div className="grid max-w-full grid-cols-3 m-auto w-fit">
       <div className="flex flex-row justify-between gap-4">
         <SecondaryButton
           className="flex-grow"
-          aria-label="go to first page"
+          aria-label={t("goToFirstPage")}
           disabled={!canGoToPrev}
           onClick={goToFirstPage}
         >
@@ -35,7 +38,7 @@ function PaginatedControls({
         </SecondaryButton>
         <SecondaryButton
           className="flex-grow"
-          aria-label="go to previous page"
+          aria-label={t("goToPrevPage")}
           disabled={!canGoToPrev}
           onClick={goToPrevPage}
         >
@@ -46,7 +49,7 @@ function PaginatedControls({
       <div className="flex flex-row">
         <SecondaryButton
           className="flex-grow"
-          aria-label="go to next page"
+          aria-label={t("goToNextPage")}
           disabled={!canGoToNext}
           onClick={goToNextPage}
         >

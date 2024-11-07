@@ -2,6 +2,7 @@ import * as React from "react";
 import { MenuIcon, XIcon } from "lucide-react";
 import FocusTrap from "focus-trap-react";
 import { cn } from "../../../../utils";
+import { useKeyedTranslation } from "../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 
 type NavPanelProps = {
   children?: React.ReactNode;
@@ -18,6 +19,7 @@ function NavPanel({
   toggleShow,
   title,
 }: NavPanelProps): JSX.Element | null {
+  const { t } = useKeyedTranslation("components.nav.PrimaryNav.NavPanel");
   React.useEffect(
     function manageEventListeners() {
       const escapeKeyListener = (event: KeyboardEvent) => {
@@ -29,12 +31,12 @@ function NavPanel({
       const clickOutsideListener = (event: PointerEvent) => {
         const elements = document.elementsFromPoint(
           event.clientX,
-          event.clientY
+          event.clientY,
         );
         if (
           !elements.some((element) => element.id === `${title}-menu`) &&
           !elements.some(
-            (element) => element.ariaLabel === `toggle ${title} menu`
+            (element) => element.ariaLabel === `toggle ${title} menu`,
           )
         ) {
           toggleShow();
@@ -51,7 +53,7 @@ function NavPanel({
         window.removeEventListener("pointerdown", clickOutsideListener);
       };
     },
-    [show, title, toggleShow]
+    [show, title, toggleShow],
   );
 
   return (
@@ -63,7 +65,7 @@ function NavPanel({
         <button
           aria-expanded={show}
           aria-controls={`${title}-menu`}
-          aria-label={`toggle ${title} menu`}
+          aria-label={t(`toggleMenu_${title}`)}
           className="lg:hidden hocus:text-secondary-200 text-neutral-50"
           onClick={toggleShow}
         >
@@ -77,7 +79,7 @@ function NavPanel({
               ? { "-translate-x-full": !show }
               : { "translate-x-full": !show },
             side === "left" ? "left-0" : "right-0",
-            { hidden: !show }
+            { hidden: !show },
           )}
         >
           <h2

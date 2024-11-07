@@ -80,6 +80,10 @@ export default interface ITranslations {
     };
     nav: {
       PrimaryNav: {
+        NavPanel: {
+          toggleMenu_navigation: string;
+          toggleMenu_profile: string;
+        };
         leftPanelTitle: string;
         rightPanelTitle: string;
         CoreLinks: {
@@ -153,7 +157,11 @@ export default interface ITranslations {
           author: string;
           pages: string;
           BookTableRow: {
+            EditBookButton: {
+              editBook: string;
+            };
             DeleteBookButton: {
+              deleteBook: string;
               ConfirmDeleteBookModal: {
                 message: string;
                 cancelButtonText: string;
@@ -211,6 +219,14 @@ export default interface ITranslations {
       };
     };
     common: {
+      ThemeSwitch: {
+        changeTheme: string;
+      };
+      PaginatedControls: {
+        goToFirstPage: string;
+        goToPrevPage: string;
+        goToNextPage: string;
+      };
       NoMoreData: {
         noMoreData: string;
       };

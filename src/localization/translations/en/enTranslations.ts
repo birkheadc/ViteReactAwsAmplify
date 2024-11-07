@@ -4,6 +4,10 @@ const enTranslations: ITranslations = {
   components: {
     nav: {
       PrimaryNav: {
+        NavPanel: {
+          toggleMenu_navigation: "toggle navigation menu",
+          toggleMenu_profile: "toggle profile menu",
+        },
         CoreLinks: {
           home: "home",
           about: "about",
@@ -60,6 +64,10 @@ const enTranslations: ITranslations = {
                 cancelButtonText: "cancel",
                 confirmButtonText: "delete",
               },
+              deleteBook: "delete book",
+            },
+            EditBookButton: {
+              editBook: "edit book",
             },
           },
         },
@@ -146,6 +154,14 @@ const enTranslations: ITranslations = {
     common: {
       NoMoreData: {
         noMoreData: "nothing more to load",
+      },
+      PaginatedControls: {
+        goToFirstPage: "go to first page",
+        goToPrevPage: "go to previous page",
+        goToNextPage: "go to next page",
+      },
+      ThemeSwitch: {
+        changeTheme: "change theme",
       },
     },
     form: {

@@ -24,12 +24,7 @@
   - Maybe color the error box beneath the table as well
 
 - useRefreshToast fails to launch a toast at all if it tries to launch a toast just as the previous toast is expiring
-
-- Create a session context that handles
-
-  - Automatically searching for a refresh token in storage and using it to login if it exists.
-  - Has a `login` method that takes in a login code, retrieves an access token and refresh token from Cognito, requests user info from the backend with that access token, and stores that refresh token.
-  - Provides access to the currently logged in User's info.
+  - Maybe a problem with the package...
 
 - Update npm packages
 
@@ -40,5 +35,3 @@
 - Fix table columns misalignment, right align numbers
 
 - In development, get a 404 for some reason on first page load...
-
-- Create book form needs a cancel button, and needs to close itself on success

@@ -5,12 +5,17 @@ import EditBookModal from "./EditBookModal/EditBookModal";
 import React from "react";
 import { UserPermission } from "../../../../../../types/user/userPermission";
 import { useMe } from "../../../../../../hooks/useMe/useMe";
+import { useKeyedTranslation } from "../../../../../../hooks/useKeyedTranslation/useKeyedTranslation";
 
 type EditBookButtonProps = {
   book: Book;
 };
 
 function EditBookButton({ book }: EditBookButtonProps): JSX.Element | null {
+  const { t } = useKeyedTranslation(
+    "components.pages.BooksPage.BooksDisplay.BookTableRow.EditBookButton",
+  );
+
   const { canI } = useMe();
   const [isOpen, setOpen] = React.useState<boolean>(false);
 
@@ -18,7 +23,11 @@ function EditBookButton({ book }: EditBookButtonProps): JSX.Element | null {
 
   return (
     <>
-      <SecondaryButton className="h-8" onClick={() => setOpen(true)}>
+      <SecondaryButton
+        aria-label={`${t("editBook")} ${book.title} ${book.author}`}
+        className="h-8"
+        onClick={() => setOpen(true)}
+      >
         <Pencil />
       </SecondaryButton>
       <EditBookModal
